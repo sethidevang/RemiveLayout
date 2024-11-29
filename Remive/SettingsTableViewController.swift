@@ -13,6 +13,9 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
     }
 
+    func hello (){
+        print("phone gum gya dhundo")
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
