@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7CC765142CC2540B000AD0F9 /* Remive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B9A8E7F2CF9A24D00640063 /* Remive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7CC765262CC2540C000AD0F9 /* Exceptions for "Remive" folder in "Remive" target */ = {
+		6B9A8E912CF9A24E00640063 /* Exceptions for "Remive" folder in "Remive" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 7CC765132CC2540B000AD0F9 /* Remive */;
+			target = 6B9A8E7E2CF9A24D00640063 /* Remive */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7CC765162CC2540B000AD0F9 /* Remive */ = {
+		6B9A8E812CF9A24D00640063 /* Remive */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				7CC765262CC2540C000AD0F9 /* Exceptions for "Remive" folder in "Remive" target */,
+				6B9A8E912CF9A24E00640063 /* Exceptions for "Remive" folder in "Remive" target */,
 			);
 			path = Remive;
 			sourceTree = "<group>";
@@ -32,7 +32,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7CC765112CC2540B000AD0F9 /* Frameworks */ = {
+		6B9A8E7C2CF9A24D00640063 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +42,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7CC7650B2CC2540B000AD0F9 = {
+		6B9A8E762CF9A24D00640063 = {
 			isa = PBXGroup;
 			children = (
-				7CC765162CC2540B000AD0F9 /* Remive */,
-				7CC765152CC2540B000AD0F9 /* Products */,
+				6B9A8E812CF9A24D00640063 /* Remive */,
+				6B9A8E802CF9A24D00640063 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7CC765152CC2540B000AD0F9 /* Products */ = {
+		6B9A8E802CF9A24D00640063 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CC765142CC2540B000AD0F9 /* Remive.app */,
+				6B9A8E7F2CF9A24D00640063 /* Remive.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +61,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CC765132CC2540B000AD0F9 /* Remive */ = {
+		6B9A8E7E2CF9A24D00640063 /* Remive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CC765272CC2540C000AD0F9 /* Build configuration list for PBXNativeTarget "Remive" */;
+			buildConfigurationList = 6B9A8E922CF9A24E00640063 /* Build configuration list for PBXNativeTarget "Remive" */;
 			buildPhases = (
-				7CC765102CC2540B000AD0F9 /* Sources */,
-				7CC765112CC2540B000AD0F9 /* Frameworks */,
-				7CC765122CC2540B000AD0F9 /* Resources */,
+				6B9A8E7B2CF9A24D00640063 /* Sources */,
+				6B9A8E7C2CF9A24D00640063 /* Frameworks */,
+				6B9A8E7D2CF9A24D00640063 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7CC765162CC2540B000AD0F9 /* Remive */,
+				6B9A8E812CF9A24D00640063 /* Remive */,
 			);
 			name = Remive;
 			packageProductDependencies = (
 			);
 			productName = Remive;
-			productReference = 7CC765142CC2540B000AD0F9 /* Remive.app */;
+			productReference = 6B9A8E7F2CF9A24D00640063 /* Remive.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7CC7650C2CC2540B000AD0F9 /* Project object */ = {
+		6B9A8E772CF9A24D00640063 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
-					7CC765132CC2540B000AD0F9 = {
-						CreatedOnToolsVersion = 16.0;
+					6B9A8E7E2CF9A24D00640063 = {
+						CreatedOnToolsVersion = 16.1;
 					};
 				};
 			};
-			buildConfigurationList = 7CC7650F2CC2540B000AD0F9 /* Build configuration list for PBXProject "Remive" */;
+			buildConfigurationList = 6B9A8E7A2CF9A24D00640063 /* Build configuration list for PBXProject "Remive" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 7CC7650B2CC2540B000AD0F9;
+			mainGroup = 6B9A8E762CF9A24D00640063;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 7CC765152CC2540B000AD0F9 /* Products */;
+			productRefGroup = 6B9A8E802CF9A24D00640063 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CC765132CC2540B000AD0F9 /* Remive */,
+				6B9A8E7E2CF9A24D00640063 /* Remive */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7CC765122CC2540B000AD0F9 /* Resources */ = {
+		6B9A8E7D2CF9A24D00640063 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +128,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7CC765102CC2540B000AD0F9 /* Sources */ = {
+		6B9A8E7B2CF9A24D00640063 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,7 +138,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		7CC765282CC2540C000AD0F9 /* Debug */ = {
+		6B9A8E932CF9A24E00640063 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -157,7 +157,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Remive;
+				PRODUCT_BUNDLE_IDENTIFIER = example.com.Remive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -165,7 +165,7 @@
 			};
 			name = Debug;
 		};
-		7CC765292CC2540C000AD0F9 /* Release */ = {
+		6B9A8E942CF9A24E00640063 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -184,7 +184,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Remive;
+				PRODUCT_BUNDLE_IDENTIFIER = example.com.Remive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -192,7 +192,7 @@
 			};
 			name = Release;
 		};
-		7CC7652A2CC2540C000AD0F9 /* Debug */ = {
+		6B9A8E952CF9A24E00640063 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -244,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -255,7 +255,7 @@
 			};
 			name = Debug;
 		};
-		7CC7652B2CC2540C000AD0F9 /* Release */ = {
+		6B9A8E962CF9A24E00640063 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -301,7 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -314,25 +314,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7CC7650F2CC2540B000AD0F9 /* Build configuration list for PBXProject "Remive" */ = {
+		6B9A8E7A2CF9A24D00640063 /* Build configuration list for PBXProject "Remive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CC7652A2CC2540C000AD0F9 /* Debug */,
-				7CC7652B2CC2540C000AD0F9 /* Release */,
+				6B9A8E952CF9A24E00640063 /* Debug */,
+				6B9A8E962CF9A24E00640063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CC765272CC2540C000AD0F9 /* Build configuration list for PBXNativeTarget "Remive" */ = {
+		6B9A8E922CF9A24E00640063 /* Build configuration list for PBXNativeTarget "Remive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CC765282CC2540C000AD0F9 /* Debug */,
-				7CC765292CC2540C000AD0F9 /* Release */,
+				6B9A8E932CF9A24E00640063 /* Debug */,
+				6B9A8E942CF9A24E00640063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7CC7650C2CC2540B000AD0F9 /* Project object */;
+	rootObject = 6B9A8E772CF9A24D00640063 /* Project object */;
 }
