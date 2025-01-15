@@ -1,0 +1,156 @@
+//
+//  InsightsCollectionViewController.swift
+//  Remive
+//
+//  Created by Disha Sharma on 07/12/24.
+//
+
+import UIKit
+
+private let reuseIdentifier = "Cell"
+private let headerReuseIdentifier = "Header"
+
+class InsightsCollectionViewController: UICollectionViewController {
+
+    func createCompositionalLayout() -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            var section: NSCollectionLayoutSection
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(1.0))
+            
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 5)
+            
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.8),
+                heightDimension: .fractionalHeight(0.3))
+            
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .groupPaging
+
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(50))
+            
+            let header = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top)
+            
+            section.boundarySupplementaryItems = [header]
+            return section
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView.collectionViewLayout = createCompositionalLayout()
+    
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
+       
+    }
+
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return InsightData.shared.getInsightCount()
+    }
+
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return InsightData.shared.getInsightItemCount(at: section)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        
+        let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BabyCare", for: indexPath) as! BabyCareCollectionViewCell
+        cell.heading1.text = data.headingOne
+        cell.heading2.text = data.headingTwo
+        cell.image.image = data.image
+        cell.image.layer.masksToBounds = true
+        cell.image.contentMode = .scaleAspectFill
+        cell.layer.cornerRadius = 20
+        cell.layer.borderWidth = 0.8
+        return cell
+                
+
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: headerReuseIdentifier,
+            for: indexPath)
+        
+        header.subviews.forEach { $0.removeFromSuperview() }
+ 
+ 
+        let label = UILabel(frame: header.bounds)
+        label.frame = CGRect(x: 15, y: 0, width: header.bounds.width - 120, height: header.bounds.height)
+            label.textAlignment = .left
+            label.font = UIFont.boldSystemFont(ofSize: 23)
+//            label.textColor = .black
+        
+        switch indexPath.section {
+        case 0:
+            label.text = "Baby Care"
+        case 1:
+            label.text = "Baby Diet"
+        case 2:
+            label.text = "Natural Remedies"
+        default:
+            label.text = ""
+        }
+
+        
+        header.addSubview(label)
+ 
+        
+        return header
+    }
+    
+    
+    
+    
+    @IBSegueAction func segue1(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
+        if let cell = sender as? UICollectionViewCell,
+                let indexPath = collectionView.indexPath(for: cell) {
+                    let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
+            return DetailTableViewController(coder: coder, data: data, heading1: data.headingOne)
+                }
+        
+                return nil
+    }
+    
+//    @IBSegueAction func segue1(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
+//        if let cell = sender as? UICollectionViewCell,
+//        let indexPath = collectionView.indexPath(for: cell) {
+//            let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
+//                return DetailTableViewController(coder: coder, data: data, heading1: data.headingOne)
+//        }
+//        
+//        return nil
+//    }
+    
+    @IBAction func unwindTomain(_ unwindSegue: UIStoryboardSegue) {
+        
+    }
+    @IBAction func savedInsightButton(_ sender: UIButton) {
+        if sender.currentImage == UIImage(systemName: "bookmark.fill") {
+               
+                sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            } else {
+                // If the image is unfilled, change it to filled
+                sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            }
+    }
+    
+}
