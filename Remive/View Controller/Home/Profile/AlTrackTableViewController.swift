@@ -8,6 +8,9 @@
 import UIKit
 
 class AlTrackTableViewController: UITableViewController {
+    
+    var allergyCount = FamilyManager.shared.getAllAllergiesCount()
+    var allergy = FamilyManager.shared.getAllAllergies()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +19,7 @@ class AlTrackTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+//         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -28,14 +31,14 @@ class AlTrackTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Allergies.count
+        return allergyCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AlTrackTableViewCell
 
         // Configure the cell...
-        cell.updateUI(allergy:  Allergies[indexPath.row])
+        cell.updateUI(allergy:  allergy[indexPath.row].rawValue)
         return cell
     }
 

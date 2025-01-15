@@ -66,7 +66,7 @@ struct HistoryRecord {
 // user class
 class FamilyManager {
     private var parentDetail = ParentDetail(
-                image: UIImage(named: "parent"),
+                image: UIImage(named: "Parent"),
                 firstName: "Olivia",
                 lastName: "",
                 phoneNumber: 1234567890,
@@ -108,6 +108,7 @@ class FamilyManager {
                         ),
                     ]
                 ),
+                    
                 KidDetail(
                     id: 2,
                     photo: UIImage(named: "john"),
@@ -137,8 +138,11 @@ class FamilyManager {
         )
     
     private var allAllergyCategories: [AllergyCategory] = [
-        .aloeVera,
-        .bakingSoda
+//        .aloeVera,
+//        .bakingSoda,
+//        .calendula,
+//        .cardamom,.chamomileTea,.chewingGum,.coconutOil,.cornstarchPowder,.cuminSeeds,.fruitJuice,.garlicOil,.ginger,.gripeWater,.honey,.lemon,.
+        .aloeVera,.bakingSoda,.calendula,.cardamom,.chamomileTea,.coconut,.cornstarch,.cumin,.garlic,.ginger,.honey,.lavender,.lemon,.oatmeal,.olive,.onion,.turmeric
     ]
     
     //initialise the singleton instance
@@ -995,27 +999,27 @@ enum InsightCatogory{
 
 enum AllergyCategory: String {
     case aloeVera = "Aloe Vera"
-    case pacifiers = "Pacifiers"
+//    case pacifiers = "Pacifiers"
     case bakingSoda = "Baking Soda"
     case cardamom = "Cardamom"
-    case chewingGum = "Chewing gum"
-    case coconutOil = "Coconut oil"
-    case cornstarchPowder = "Cornstarch Powder"
-    case cuminSeeds = "Cumin seeds"
-    case fruitJuice = "Fruit juice"
-    case garlicOil = "Garlic oil"
-    case gripeWater = "Gripe water"
-    case harshSoaps = "Harsh Soaps"
-    case highFiberFoods = "High-Fiber Foods"
+//    case chewingGum = "Chewing gum"
+    case coconut = "Coconut"
+    case cornstarch = "Cornstarch"
+    case cumin = "Cumin"
+//    case fruitJuice = "Fruit juice"
+    case garlic = "Garlic"
+//    case gripeWater = "Gripe water"
+//    case harshSoaps = "Harsh Soaps"
+//    case highFiberFoods = "High-Fiber Foods"
     case honey = "Honey"
     case lemon = "Lemon"
-    case oatmealBath = "Oatmeal Bath"
-    case oliveOil = "Olive oil"
+    case oatmeal = "Oatmeal"
+    case olive = "Olive"
     case onion = "Onion"
     case turmeric = "Turmeric"
     case chamomileTea = "Chamomile tea"
     case ginger = "Ginger"
-    case lavenderOil = "Lavender oil"
+    case lavender = "Lavender"
     case calendula = "Calendula"
 }
 
@@ -1134,7 +1138,7 @@ class InsightData {
                 dataOne: "At 6–8 months, breastmilk remains your baby's main source of nutrition, but solid foods should now be added. Offer half a cup of soft foods two to three times a day, along with small healthy snacks. Focus on mashed fruits, vegetables, grains, and tubers, while avoiding honey until after one year. If your baby refuses a food, try again later or mix it with a familiar food.",
                 subheadingTwo: "9-11 Months: Advancing to Finger Foods",
                 dataTwo: "From 9–11 months, offer half a cup of food three to four times a day, plus snacks. Your baby may start eating finger foods, so chop food into small pieces. Ensure meals are nutritious, including vegetables, fruits, dairy, eggs, and meats, along with fats for energy. Continue breastfeeding to support their nutritional needs.",
-                allergyCategory: [.highFiberFoods]
+                allergyCategory: []
             ),
             ],
             ["Baby's First Foods: A Guide for 4-6 Months" : Insights(
@@ -1146,7 +1150,7 @@ class InsightData {
                 dataOne: "Between 4-6 months, babies need more iron than breastmilk alone can provide. Single-grain, iron-fortified cereals are an ideal first food, providing easy-to-digest iron. Mixing the cereal with breast milk, formula, or water helps create a smooth consistency for your baby to swallow comfortably.",
                 subheadingTwo: "How to Serve Cereal",
                 dataTwo: "Start with small spoonfuls, observing how your baby responds to the texture. Iron reserves from birth begin depleting around 6 months, so introducing iron-rich cereals ensures essential nutrition during this critical development period.",
-                allergyCategory: [.fruitJuice]
+                allergyCategory: []
             ),
             ],
             ["Fruits and Vegetables for 6-8 Month-Olds" : Insights(
@@ -1158,7 +1162,7 @@ class InsightData {
                 dataOne: "By 6-8 months, babies are ready for pureed fruits and vegetables, such as bananas, pears, carrots, and peas. Washing, cooking, and pureeing these foods with a bit of breast milk, formula, or water creates a consistency that’s easy for your baby to eat.",
                 subheadingTwo: "Adding Flavor and Texture",
                 dataTwo: "Mixing purees with single-grain cereals adds flavor and texture, encouraging variety. Introducing different fruits and veggies lays the groundwork for balanced eating habits and familiarizes babies with various tastes, supporting healthy eating later on.",
-                allergyCategory: [.highFiberFoods, .fruitJuice]
+                allergyCategory: []
             ),
             ],
             ["8-10 Months: Exploring Mashed Foods and Finger Foods" : Insights(
@@ -1170,7 +1174,7 @@ class InsightData {
                 dataOne: "By 8-10 months, babies begin to transition from purees to mashed foods with more texture. Foods like mashed sweet potatoes, peas, and chicken offer more substance while remaining easy to eat. As babies gain more control, they may start using their fingers to feed themselves.",
                 subheadingTwo: "Safety and Supervision with Finger Foods",
                 dataTwo: "For finger foods like small pieces of soft fruit, vegetables, and scrambled eggs, make sure to supervise your baby to prevent choking. Cut food into small, manageable pieces, and be mindful of any allergies.",
-                allergyCategory: [.highFiberFoods]
+                allergyCategory: []
             ),
             ],
             ["10-12 Months: Transitioning to Family Meals" : Insights(
@@ -1182,7 +1186,7 @@ class InsightData {
                 dataOne: "At 10-12 months, your baby can begin eating more family-style meals. Offer mashed, chopped, or soft foods from your plate. Include small portions of foods like pasta, cooked meats, soft fruits, and vegetables. Be mindful of salt and sugar intake at this stage.",
                 subheadingTwo: "Continue Breastfeeding",
                 dataTwo: "Continue breastfeeding or offering formula while transitioning to solid foods. Breastfeeding remains a primary source of nutrition for babies, providing key nutrients and antibodies.",
-                allergyCategory: [.highFiberFoods]
+                allergyCategory: []
             ),
             ],
             ["Hydration and Baby’s First Drinks" : Insights(
@@ -1194,7 +1198,7 @@ class InsightData {
                 dataOne: "Start offering water around 6 months as part of your baby’s hydration. Give small sips in a sippy cup or bottle alongside meals. Babies can also continue breastfeeding or formula feeding for adequate hydration and nutrition.",
                 subheadingTwo: "Avoid Sugary Drinks",
                 dataTwo: "Avoid offering sugary drinks like juice or soda. These can contribute to tooth decay and lead to unhealthy eating patterns. Water and milk are the best options during this stage.",
-                allergyCategory: [.fruitJuice]
+                allergyCategory: []
             ),
             ]
         ],
@@ -1232,7 +1236,7 @@ class InsightData {
                 dataOne: "Lavender oil is often used to calm and relax babies, especially at bedtime. Diluted lavender oil can be gently applied to your baby’s skin to promote relaxation and help with sleep. Be sure to dilute properly and perform a patch test for allergies.",
                 subheadingTwo: "Promoting Skin Health",
                 dataTwo: "Lavender oil can also be used to treat minor skin irritations like rashes or insect bites. Its natural antiseptic properties help heal the skin without causing further irritation.",
-                allergyCategory: [.lavenderOil]
+                allergyCategory: [.lavender]
             ),
             ],
             ["Calendula for Baby’s Skin Care" : Insights(

@@ -11,7 +11,7 @@ class AlTrackTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     
-    @IBOutlet var subtitleLabel: UILabel!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,8 +22,8 @@ class AlTrackTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func updateUI(allergy: Allergy) {
-        titleLabel.text = allergy.title
-        subtitleLabel.text = allergy.subtitle
+    func updateUI(allergy:String) {
+        titleLabel.text = allergy
+//       
     }
 }
