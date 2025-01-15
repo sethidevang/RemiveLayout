@@ -10,7 +10,11 @@ import UIKit
 private let reuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
 
-class InsightsCollectionViewController: UICollectionViewController {
+class InsightsCollectionViewController: UICollectionViewController, SavedInsightsDelegate {
+    
+    func didClearSavedInsights() {
+        collectionView.reloadData()
+    }
 
     func createCompositionalLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
@@ -57,6 +61,10 @@ class InsightsCollectionViewController: UICollectionViewController {
        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return InsightData.shared.getInsightCount()
@@ -68,10 +76,9 @@ class InsightsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        
         let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BabyCare", for: indexPath) as! BabyCareCollectionViewCell
+        
         cell.heading1.text = data.headingOne
         cell.heading2.text = data.headingTwo
         cell.image.image = data.image
@@ -79,9 +86,15 @@ class InsightsCollectionViewController: UICollectionViewController {
         cell.image.contentMode = .scaleAspectFill
         cell.layer.cornerRadius = 20
         cell.layer.borderWidth = 0.8
+        cell.bookmarkButton.tag = data.id
+        
+        if InsightData.shared.getSavedInsights().contains(where: { $0.id == data.id }) {
+            cell.bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        } else {
+            cell.bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        }
+        
         return cell
-                
-
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -117,17 +130,26 @@ class InsightsCollectionViewController: UICollectionViewController {
         return header
     }
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let savedInsightsVC = segue.destination as? SavedInsightTableViewController {
+            savedInsightsVC.delegate = self
+        }
+    }
     
     @IBSegueAction func segue1(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
         if let cell = sender as? UICollectionViewCell,
-                let indexPath = collectionView.indexPath(for: cell) {
-                    let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
-            return DetailTableViewController(coder: coder, data: data, heading1: data.headingOne)
-                }
-        
-                return nil
+           let indexPath = collectionView.indexPath(for: cell) {
+            let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
+            var isSaved: Bool = false
+            
+            if InsightData.shared.getSavedInsights().contains(where: { $0.id == data.id }) {
+                isSaved = true
+            }
+            
+            return DetailTableViewController(coder: coder, data: data, heading1: data.headingOne, indexPath: indexPath, isSaved: isSaved)
+        }
+    
+        return nil
     }
     
 //    @IBSegueAction func segue1(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
@@ -140,17 +162,31 @@ class InsightsCollectionViewController: UICollectionViewController {
 //        return nil
 //    }
     
-    @IBAction func unwindTomain(_ unwindSegue: UIStoryboardSegue) {
-        
+    @IBAction func showSavedInsightsButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showSavedInsights", sender: sender)
     }
+    
+    @IBAction func unwindTomain(_ unwindSegue: UIStoryboardSegue) {
+        if let sourceVC = unwindSegue.source as? DetailTableViewController,
+           let indexPath = sourceVC.selectedIndexPath {
+            collectionView.reloadItems(at: [IndexPath(item: indexPath.item, section: indexPath.section)])
+        }
+        if let sourceVC = unwindSegue.source as? SavedInsightTableViewController {
+            if sourceVC.deletedInsight == true {
+                collectionView.reloadData()
+            }
+        }
+    }
+    
     @IBAction func savedInsightButton(_ sender: UIButton) {
         if sender.currentImage == UIImage(systemName: "bookmark.fill") {
-               
-                sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            } else {
-                // If the image is unfilled, change it to filled
-                sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            }
+            sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            InsightData.shared.removeInsight(id: sender.tag)
+        } else {
+            // If the image is unfilled, change it to filled
+            sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            InsightData.shared.saveInsight(id: sender.tag)
+        }
     }
     
 }

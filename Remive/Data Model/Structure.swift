@@ -27,11 +27,12 @@ struct ParentDetail {
     
     var kids: [KidDetail]
 }
-//allergy
-struct AlTrack {
-    var allergyName: String
 
-}
+//allergy
+//struct AlTrack {
+//    var allergy: AllergyCategory
+//}
+
 //kid profile
 struct KidDetail {
     var id: Int
@@ -42,7 +43,7 @@ struct KidDetail {
     var gender: String?
     var height: Double?
     var weight: Double?
-    var alTrack: [AlTrack] = [] //allergy track
+    var alTrack: [AllergyCategory] = [] //allergy track
     var histroy: [HistoryRecord] = []
 
     var age: Int {
@@ -65,9 +66,9 @@ struct HistoryRecord {
 // user class
 class FamilyManager {
     private var parentDetail = ParentDetail(
-                image: UIImage(named: "Parent"),
+                image: UIImage(named: "parent"),
                 firstName: "Olivia",
-                lastName: "Hello",
+                lastName: "",
                 phoneNumber: 1234567890,
                 email: "olivia.johnson@email.com",
                 address: "123 Main St, Springfield, IL",
@@ -81,7 +82,7 @@ class FamilyManager {
                     gender: "Female",
                     height: 120.0,
                     weight: 25.5,
-                    alTrack: [AlTrack(allergyName: "Peanuts")],
+                    alTrack: [.aloeVera],
                     histroy: [
                         HistoryRecord(condition: "Cold", selectedRemedy:
                             Remedy(
@@ -116,8 +117,9 @@ class FamilyManager {
                     gender: "Male",
                     height: 95.0,
                     weight: 15.0,
-                    alTrack: [AlTrack(allergyName: "Aloe Vera Gel"), AlTrack(allergyName: "Aloe Vera Gel")],
-                    histroy: [HistoryRecord(condition: "Colic", selectedRemedy:
+                    alTrack: [.bakingSoda],
+                    histroy: [
+                        HistoryRecord(condition: "Colic", selectedRemedy:
                         Remedy(
                             title: "Warm Baths",
                             shortDescription: "A warm bath helps soothe the baby and provides relief from colic.",
@@ -128,12 +130,16 @@ class FamilyManager {
                                    ],
                             images: ["warm_bath"],
                             link: "https://www.healthline.com/health/baby/baby-bath-temperature#ideal-temperature"
-                        ), date: Date())]
+                        ), date: Date())
+                    ]
                 )
             ]
         )
     
-//    private var parentDetail: ParentDetail
+    private var allAllergyCategories: [AllergyCategory] = [
+        .aloeVera,
+        .bakingSoda
+    ]
     
     //initialise the singleton instance
     static let shared = FamilyManager()
@@ -205,8 +211,31 @@ class FamilyManager {
         return parentDetail.kids.count
     }
     
+    // Get allergies of a child
+    func getAllergies(ofChildID id: Int) -> [AllergyCategory] {
+        if let kidDetails = getChildDetails(byID: id) {
+            return kidDetails.alTrack
+        }
+        return []
+    }
+    
+    // Get all allergies
+    func getAllAllergies() -> [AllergyCategory] {
+        allAllergyCategories
+    }
+    
+    // Get all allergies count
+    func getAllAllergiesCount() -> Int {
+        allAllergyCategories.count
+    }
+    
+    // Get allergies count of a child
+    func getAllergiesCount(ofChildID id: Int) -> Int {
+        return getAllergies(ofChildID: id).count
+    }
+    
     // Add an allergy to a child's allergy track.
-    func addAllergy(toChildID id: Int, allergy: AlTrack) {
+    func addAllergy(toChildID id: Int, allergy: AllergyCategory) {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
             parentDetail.kids[index].alTrack.append(allergy)
             print("Allergy added to child with ID \(id).")
@@ -216,28 +245,29 @@ class FamilyManager {
     }
     
     // Remove an allergy from a child's allergy track by allergy name.
-    func removeAllergy(fromChildID id: Int, allergyName: String) {
+    func removeAllergy(fromChildID id: Int, allergy: AllergyCategory) {
         if let kidIndex = parentDetail.kids.firstIndex(where: { $0.id == id }) {
-            if let allergyIndex = parentDetail.kids[kidIndex].alTrack.firstIndex(where: { $0.allergyName == allergyName }) {
+            if let allergyIndex = parentDetail.kids[kidIndex].alTrack.firstIndex(where: { $0.rawValue == allergy.rawValue }) {
                 parentDetail.kids[kidIndex].alTrack.remove(at: allergyIndex)
-                print("Allergy '\(allergyName)' removed from child with ID \(id).")
+                print("Allergy '\(allergy)' removed from child with ID \(id).")
             } else {
-                print("No allergy named '\(allergyName)' found for child with ID \(id).")
+                print("No allergy named '\(allergy)' found for child with ID \(id).")
             }
         } else {
             print("No child found with ID \(id).")
         }
     }
-    //add history to the profile
-    func addHistory(toChildID id: Int, condition: String, remedy: Remedy) {
+    
+    //add search history to the child profile
+    func addChildSearchHistory(toChildID id: Int, condition: String, remedy: Remedy) {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
 //            parentDetail.kids[index].histroy.append(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()))
             parentDetail.kids[index].histroy.insert(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()), at: 0)
         }
     }
     
-    //remove history
-    func removeHistory(toChildID id: Int, condition: String, remedy: Remedy) {
+    //remove search history of a child profile
+    func removeChildSearchHistory(toChildID id: Int, condition: String, remedy: Remedy) {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
             // Find the index of the last matching HistoryRecord
             if let recordIndex = parentDetail.kids[index].histroy.lastIndex(where: {
@@ -262,6 +292,7 @@ class FamilyManager {
 }
 
 // MARK: - Remedy suggestion data model
+
 struct Remedy {
     let title: String
     let shortDescription: String
@@ -269,10 +300,12 @@ struct Remedy {
     let images: [String]
     let link: String
 }
+
 //cureTip
 struct Solution {
     let conditions: [String: [Remedy]]
 }
+
 //class for remedy
 class RemedySuggestionsModel {
     private init() {}
@@ -830,7 +863,7 @@ class RemedySuggestionsModel {
             ],
             "Vomiting" : [
                 Remedy(
-                    title: "Water",
+                    title: "Coconut Water\nLemon Juice",
                     shortDescription: "Coconut water and lemon juice help soothe nausea and vomiting.",
                     steps: ["Mix 1 teaspoon of lemon juice with a cup of coconut water." ,
                             "Offer the mixture to the child in small sips." ,
@@ -867,7 +900,7 @@ class RemedySuggestionsModel {
     private var suggestedRemedies: [Remedy] = []
     private var suggestedIngredients: [String] = [] //the ones that will be displayed to the user
     private var finalIngredients: [String] = [] //wrt the remedy will be generated
-    private var allergies: [AlTrack] = [] // to get the kids allergy for filtering the result
+    private var allergies: [AllergyCategory] = [] // to get the kids allergy for filtering the result
     
     func getRemedies() -> [Remedy] {
         return suggestedRemedies
@@ -881,7 +914,7 @@ class RemedySuggestionsModel {
         allergies = kidDetail.alTrack
     }
     //to get the allergy
-    func getAllergies() -> [AlTrack] {
+    func getAllergies() -> [AllergyCategory] {
         return allergies
     }
     //to get all the symptoms
@@ -960,7 +993,34 @@ enum InsightCatogory{
     case naturalRemedies
 }
 
+enum AllergyCategory: String {
+    case aloeVera = "Aloe Vera"
+    case pacifiers = "Pacifiers"
+    case bakingSoda = "Baking Soda"
+    case cardamom = "Cardamom"
+    case chewingGum = "Chewing gum"
+    case coconutOil = "Coconut oil"
+    case cornstarchPowder = "Cornstarch Powder"
+    case cuminSeeds = "Cumin seeds"
+    case fruitJuice = "Fruit juice"
+    case garlicOil = "Garlic oil"
+    case gripeWater = "Gripe water"
+    case harshSoaps = "Harsh Soaps"
+    case highFiberFoods = "High-Fiber Foods"
+    case honey = "Honey"
+    case lemon = "Lemon"
+    case oatmealBath = "Oatmeal Bath"
+    case oliveOil = "Olive oil"
+    case onion = "Onion"
+    case turmeric = "Turmeric"
+    case chamomileTea = "Chamomile tea"
+    case ginger = "Ginger"
+    case lavenderOil = "Lavender oil"
+    case calendula = "Calendula"
+}
+
 struct Insights {
+    var id: Int
     var image : UIImage?
     var headingOne : String
     var headingTwo : String
@@ -968,7 +1028,10 @@ struct Insights {
     var dataOne : String
     var subheadingTwo : String?
     var dataTwo : String?
+    var savedDateTime : Date? = nil
+    var allergyCategory: [AllergyCategory]
 }
+
 //dont make everything nil
 class InsightData {
     
@@ -977,166 +1040,221 @@ class InsightData {
     private var ckOne : [InsightCatogory : [[String: Insights]]] = [
         .babyCare: [
             ["Keeping the Baby Warm" : Insights(
+                id:1,
                 image : UIImage(named: "BabyCare1"),
                 headingOne: "Keeping the Baby Warm",
                 headingTwo: "Ensuring Baby's Comfort",
                 subheadingOne: "Proper Layering for Comfort",
                 dataOne: "To help newborns and children maintain body temperature, dress them in one or two more layers than you'd wear. Check their skin—add layers if it feels cold, but avoid overheating, which can pose health risks.",
                 subheadingTwo: "Head Covering for Warmth",
-                dataTwo: "To prevent heat loss, keep a newborn’s head covered in cooler environments. A soft, breathable hat provides warmth and airflow, ideal for cold weather. Indoors in warm settings, a hat may not be needed."),
+                dataTwo: "To prevent heat loss, keep a newborn’s head covered in cooler environments. A soft, breathable hat provides warmth and airflow, ideal for cold weather. Indoors in warm settings, a hat may not be needed.",
+                allergyCategory: []
+            ),
             ],
             ["Ensuring Safe Sleep for Babies and Young Children" : Insights(
+                id:2,
                 image : UIImage(named: "BabyCare2"),
                 headingOne: "Safe Sleep for Children",
                 headingTwo: "Importance of Safe Sleep",
                 subheadingOne: "Sleep Position and Safety",
                 dataOne: "Always place babies on their backs to sleep, as this position reduces the risk of Sudden Infant Death Syndrome (SIDS). Ensure a safe sleep environment with a firm mattress, fitted sheet, and no soft objects like pillows or stuffed animals, which could obstruct breathing.",
                 subheadingTwo: "Sleep Duration and Environment",
-                dataTwo: "Newborns typically need 14-17 hours of sleep. As they grow, sleep needs decrease but remain essential. Ensure a quiet, dark room to support better sleep quality."),
+                dataTwo: "Newborns typically need 14-17 hours of sleep. As they grow, sleep needs decrease but remain essential. Ensure a quiet, dark room to support better sleep quality.",
+                allergyCategory: []
+            ),
             ],
             ["Hygiene and Safety Measures" : Insights(
+                id:3,
                 image : UIImage(named: "BabyCare3"),
                 headingOne: "Hygiene and Safety Measures",
                 headingTwo: "Cleanliness prevents infection",
                 subheadingOne: "Handwashing and Clean Environment",
                 dataOne: "Maintain good hygiene by washing hands thoroughly before handling your baby. Babies’ immune systems are still developing, so a clean environment is crucial. Use clean water for food and keep the area free from waste and contaminants to reduce illness risks.",
                 subheadingTwo: "Home Safety Precautions",
-                dataTwo: "Store toxic items like chemicals and medicines out of reach. Ensure pools or open water areas are secured. A smoke-free environment is vital—avoid smoking indoors or near your baby to protect their respiratory health"),
+                dataTwo: "Store toxic items like chemicals and medicines out of reach. Ensure pools or open water areas are secured. A smoke-free environment is vital—avoid smoking indoors or near your baby to protect their respiratory health",
+                allergyCategory: []
+            ),
             ],
             ["Engaging and Bonding with Your Baby" : Insights(
+                id:4,
                 image : UIImage(named: "BabyCare4"),
                 headingOne: "Bonding with Your Baby",
                 headingTwo: "Bond through interaction",
                 subheadingOne: "Communication and Attention",
                 dataOne: "Talking to your baby and making eye contact helps them feel secure and promotes development. Engage through gentle talk and touch, fostering a bond and creating a foundation for emotional security.",
                 subheadingTwo: "Physical Activity for Development",
-                dataTwo: "Encourage daily physical activity, like tummy time for muscle strength. As your baby grows, promote more active play like reaching and crawling. For older children, aim for 180 minutes of activity per day for physical and mental health."),
+                dataTwo: "Encourage daily physical activity, like tummy time for muscle strength. As your baby grows, promote more active play like reaching and crawling. For older children, aim for 180 minutes of activity per day for physical and mental health.",
+                allergyCategory: []
+            ),
             ],
             ["Proper Care and Handling of Your Baby" : Insights(
+                id:5,
                 image : UIImage(named: "BabyCare5"),
                 headingOne: "Hold baby gently",
                 headingTwo: "Gentle Handling and Safety",
                 subheadingOne: "Support and Care During Handling",
                 dataOne: "Always support your baby’s head and neck when lifting or carrying them, as they are still fragile. Avoid shaking, as it can cause serious injury. Seek help if you feel overwhelmed to avoid handling frustration.",
                 subheadingTwo: "Bonding Through Physical Contact",
-                dataTwo: "Skin-to-skin contact, or kangaroo care, helps regulate temperature and soothes your baby, fostering a sense of safety and attachment crucial for emotional development."),
+                dataTwo: "Skin-to-skin contact, or kangaroo care, helps regulate temperature and soothes your baby, fostering a sense of safety and attachment crucial for emotional development.",
+                allergyCategory: []
+            ),
             ],
             ["Diapering and Bathing Care" : Insights(
+                id:6,
                 image : UIImage(named: "BabyCare6"),
                 headingOne: "Clean with care",
                 headingTwo: "Clean, wipe, apply cream",
                 subheadingOne: "Hygiene and Comfort",
                 dataOne: "Have all diapering supplies within reach and clean from front to back to avoid infection. Apply diaper cream as needed and wash your hands thoroughly afterward to prevent spreading germs.",
                 subheadingTwo: "Bathing Newborns Safely",
-                dataTwo: "Use sponge baths initially, transitioning to regular baths once the umbilical stump heals. Keep water warm, not hot, and bathe only a few times a week to protect sensitive skin from drying out."),
+                dataTwo: "Use sponge baths initially, transitioning to regular baths once the umbilical stump heals. Keep water warm, not hot, and bathe only a few times a week to protect sensitive skin from drying out.",
+                allergyCategory: []
+            ),
             ],
             ["Feeding and Sleep Patterns" : Insights(
+                id:7,
                 image : UIImage(named: "BabyCare7"),
                 headingOne: "Establish a routine",
                 headingTwo: "Feeding Your Newborn",
                 subheadingOne: "Frequent Feeding and Monitoring",
                 dataOne: "Newborns typically need feeding every 2-3 hours. Breastfeeding provides essential nutrients. Monitor for enough wet diapers and weight gain, and consult a pediatrician if concerned about feeding adequacy.",
                 subheadingTwo: "Sleep Habits and Environment",
-                dataTwo: "Newborns may sleep up to 16 hours daily but often in short periods. Follow safe sleep practices by placing them on their back and avoiding loose bedding. Establish a routine to help your baby develop a healthy sleep pattern as they grow."),
+                dataTwo: "Newborns may sleep up to 16 hours daily but often in short periods. Follow safe sleep practices by placing them on their back and avoiding loose bedding. Establish a routine to help your baby develop a healthy sleep pattern as they grow.",
+                allergyCategory: []
+            ),
             ]
         ],
         .babyDiet: [
             ["Feeding Your Baby: Essential Nutrition for Growth" : Insights(
+                id:8,
                 image : UIImage(named: "BabyDiet1"),
                 headingOne: "Ensure balanced nutrition",
                 headingTwo: "Nourish, Grow, Thrive",
                 subheadingOne: "6-8 Months: Introducing Solid Foods",
                 dataOne: "At 6–8 months, breastmilk remains your baby's main source of nutrition, but solid foods should now be added. Offer half a cup of soft foods two to three times a day, along with small healthy snacks. Focus on mashed fruits, vegetables, grains, and tubers, while avoiding honey until after one year. If your baby refuses a food, try again later or mix it with a familiar food.",
                 subheadingTwo: "9-11 Months: Advancing to Finger Foods",
-                dataTwo: "From 9–11 months, offer half a cup of food three to four times a day, plus snacks. Your baby may start eating finger foods, so chop food into small pieces. Ensure meals are nutritious, including vegetables, fruits, dairy, eggs, and meats, along with fats for energy. Continue breastfeeding to support their nutritional needs."),
+                dataTwo: "From 9–11 months, offer half a cup of food three to four times a day, plus snacks. Your baby may start eating finger foods, so chop food into small pieces. Ensure meals are nutritious, including vegetables, fruits, dairy, eggs, and meats, along with fats for energy. Continue breastfeeding to support their nutritional needs.",
+                allergyCategory: [.highFiberFoods]
+            ),
             ],
             ["Baby's First Foods: A Guide for 4-6 Months" : Insights(
+                id:9,
                 image : UIImage(named: "BabyDiet2"),
                 headingOne: "Feed gradually",
                 headingTwo: "Start with rice cereal",
                 subheadingOne: "Why Iron is Essential",
                 dataOne: "Between 4-6 months, babies need more iron than breastmilk alone can provide. Single-grain, iron-fortified cereals are an ideal first food, providing easy-to-digest iron. Mixing the cereal with breast milk, formula, or water helps create a smooth consistency for your baby to swallow comfortably.",
                 subheadingTwo: "How to Serve Cereal",
-                dataTwo: "Start with small spoonfuls, observing how your baby responds to the texture. Iron reserves from birth begin depleting around 6 months, so introducing iron-rich cereals ensures essential nutrition during this critical development period."),
+                dataTwo: "Start with small spoonfuls, observing how your baby responds to the texture. Iron reserves from birth begin depleting around 6 months, so introducing iron-rich cereals ensures essential nutrition during this critical development period.",
+                allergyCategory: [.fruitJuice]
+            ),
             ],
             ["Fruits and Vegetables for 6-8 Month-Olds" : Insights(
+                id:10,
                 image : UIImage(named: "BabyDiet3"),
                 headingOne: "Introduce soft purees",
                 headingTwo: "Use fresh fruits/veggies",
                 subheadingOne: "Nutrient-Rich Purees",
                 dataOne: "By 6-8 months, babies are ready for pureed fruits and vegetables, such as bananas, pears, carrots, and peas. Washing, cooking, and pureeing these foods with a bit of breast milk, formula, or water creates a consistency that’s easy for your baby to eat.",
                 subheadingTwo: "Adding Flavor and Texture",
-                dataTwo: "Mixing purees with single-grain cereals adds flavor and texture, encouraging variety. Introducing different fruits and veggies lays the groundwork for balanced eating habits and familiarizes babies with various tastes, supporting healthy eating later on."),
+                dataTwo: "Mixing purees with single-grain cereals adds flavor and texture, encouraging variety. Introducing different fruits and veggies lays the groundwork for balanced eating habits and familiarizes babies with various tastes, supporting healthy eating later on.",
+                allergyCategory: [.highFiberFoods, .fruitJuice]
+            ),
             ],
             ["8-10 Months: Exploring Mashed Foods and Finger Foods" : Insights(
+                id:11,
                 image : UIImage(named: "BabyDiet4"),
                 headingOne: "Introduce mashed textures",
                 headingTwo: "Encourage self-feeding.",
                 subheadingOne: "Introducing Mashed Foods",
                 dataOne: "By 8-10 months, babies begin to transition from purees to mashed foods with more texture. Foods like mashed sweet potatoes, peas, and chicken offer more substance while remaining easy to eat. As babies gain more control, they may start using their fingers to feed themselves.",
                 subheadingTwo: "Safety and Supervision with Finger Foods",
-                dataTwo: "For finger foods like small pieces of soft fruit, vegetables, and scrambled eggs, make sure to supervise your baby to prevent choking. Cut food into small, manageable pieces, and be mindful of any allergies."),
+                dataTwo: "For finger foods like small pieces of soft fruit, vegetables, and scrambled eggs, make sure to supervise your baby to prevent choking. Cut food into small, manageable pieces, and be mindful of any allergies.",
+                allergyCategory: [.highFiberFoods]
+            ),
             ],
             ["10-12 Months: Transitioning to Family Meals" : Insights(
+                id:12,
                 image : UIImage(named: "BabyDiet5"),
                 headingOne: "Serve small, soft portions",
                 headingTwo: "Preparing Balanced Meals",
                 subheadingOne: "Introducing Family Foods",
                 dataOne: "At 10-12 months, your baby can begin eating more family-style meals. Offer mashed, chopped, or soft foods from your plate. Include small portions of foods like pasta, cooked meats, soft fruits, and vegetables. Be mindful of salt and sugar intake at this stage.",
                 subheadingTwo: "Continue Breastfeeding",
-                dataTwo: "Continue breastfeeding or offering formula while transitioning to solid foods. Breastfeeding remains a primary source of nutrition for babies, providing key nutrients and antibodies."),
+                dataTwo: "Continue breastfeeding or offering formula while transitioning to solid foods. Breastfeeding remains a primary source of nutrition for babies, providing key nutrients and antibodies.",
+                allergyCategory: [.highFiberFoods]
+            ),
             ],
             ["Hydration and Baby’s First Drinks" : Insights(
+                id:13,
                 image : UIImage(named: "BabyDiet6"),
                 headingOne: "Monitor hydration levels",
                 headingTwo: "Milk and water are key",
                 subheadingOne: "Introducing Water",
                 dataOne: "Start offering water around 6 months as part of your baby’s hydration. Give small sips in a sippy cup or bottle alongside meals. Babies can also continue breastfeeding or formula feeding for adequate hydration and nutrition.",
                 subheadingTwo: "Avoid Sugary Drinks",
-                dataTwo: "Avoid offering sugary drinks like juice or soda. These can contribute to tooth decay and lead to unhealthy eating patterns. Water and milk are the best options during this stage."),
+                dataTwo: "Avoid offering sugary drinks like juice or soda. These can contribute to tooth decay and lead to unhealthy eating patterns. Water and milk are the best options during this stage.",
+                allergyCategory: [.fruitJuice]
+            ),
             ]
         ],
         .naturalRemedies: [
             ["Chamomile Tea for Babies: Soothing Benefits" : Insights(
+                id:14,
                 image : UIImage(named: "NaturalRemedy1"),
                 headingOne: "Chamomile tea can soothe",
                 headingTwo: "Calms and Sooths",
                 subheadingOne: "Promoting Relaxation and Sleep",
                 dataOne: "Chamomile tea is known for its calming properties. For babies experiencing mild discomfort or trouble sleeping, diluted chamomile tea may help soothe them and promote better sleep. Use caution and consult a pediatrician before introducing any herbal remedies.",
                 subheadingTwo: "Mild Digestive Relief",
-                dataTwo: "Chamomile tea may also provide mild relief for digestive issues like gas or colic. Always ensure the tea is diluted well and only offer small amounts."),
+                dataTwo: "Chamomile tea may also provide mild relief for digestive issues like gas or colic. Always ensure the tea is diluted well and only offer small amounts.",
+                allergyCategory: [.chamomileTea]
+            ),
             ],
             ["Ginger for Baby’s Digestive Health" : Insights(
+                id:15,
                 image : UIImage(named: "NaturalRemedy2"),
                 headingOne: "Ginger aids digestion",
                 headingTwo: "Helps sooths tummy",
                 subheadingOne: "Gentle Relief for Digestive Discomfort",
                 dataOne: "Ginger is known for its ability to ease nausea and support digestion. In small amounts, ginger may help alleviate discomfort from indigestion or colic in babies. Always consult a pediatrician before giving your baby any herbal remedy.",
                 subheadingTwo: "Preparation Tips for Babies",
-                dataTwo: "Fresh ginger can be used to make a mild tea, but it should be diluted heavily and given in small doses. Avoid using ginger in excess, as it can be too strong for young babies."),
+                dataTwo: "Fresh ginger can be used to make a mild tea, but it should be diluted heavily and given in small doses. Avoid using ginger in excess, as it can be too strong for young babies.",
+                allergyCategory: [.ginger]
+            ),
             ],
             ["Lavender Oil for Baby’s Skin and Sleep" : Insights(
+                id:16,
                 image : UIImage(named: "NaturalRemedy3"),
                 headingOne: "Lavender oil soothes skin",
                 headingTwo: "Lavender calms and relaxes",
                 subheadingOne: "Lavender’s Calming Effect",
                 dataOne: "Lavender oil is often used to calm and relax babies, especially at bedtime. Diluted lavender oil can be gently applied to your baby’s skin to promote relaxation and help with sleep. Be sure to dilute properly and perform a patch test for allergies.",
                 subheadingTwo: "Promoting Skin Health",
-                dataTwo: "Lavender oil can also be used to treat minor skin irritations like rashes or insect bites. Its natural antiseptic properties help heal the skin without causing further irritation."),
+                dataTwo: "Lavender oil can also be used to treat minor skin irritations like rashes or insect bites. Its natural antiseptic properties help heal the skin without causing further irritation.",
+                allergyCategory: [.lavenderOil]
+            ),
             ],
             ["Calendula for Baby’s Skin Care" : Insights(
+                id:17,
                 image : UIImage(named: "NaturalRemedy4"),
                 headingOne: "Calendula soothes skin",
                 headingTwo: "Ideal for sensitive skin",
                 subheadingOne: "Treating Diaper Rash and Irritations",
                 dataOne: "Calendula is a gentle herb known for its healing properties. It can be used to treat diaper rash and other skin irritations. Apply calendula-infused creams or oils to the affected area to promote healing and soothe your baby’s skin.",
                 subheadingTwo: "Safe and Effective Remedy",
-                dataTwo: "Calendula is safe for babies when used appropriately. Avoid using products that contain alcohol or harsh chemicals, and always opt for gentle, natural remedies to avoid irritating delicate skin."),
+                dataTwo: "Calendula is safe for babies when used appropriately. Avoid using products that contain alcohol or harsh chemicals, and always opt for gentle, natural remedies to avoid irritating delicate skin.",
+                allergyCategory: [.calendula]
+            ),
             ]
         ]
     ]
+    
+    private var saved: [Insights] = []
+    
     private init() {
     }
+    
     func getInsight(section: Int, item: Int) -> Insights {
         switch section {
         case 0:
@@ -1189,4 +1307,76 @@ class InsightData {
         let randomInsights = randomItemIndices.map { selectedCategory[$0].values.first! }
         return randomInsights
     }
+    
+    // Get saved insights array
+    func getSavedInsights() -> [Insights] {
+        return saved
+    }
+    
+    // Save a insight
+    func saveInsight(id: Int) {
+        var insightData: Insights?
+        
+        for category in ckOne.values {
+            for item in category {
+                if let insight = item.values.first, insight.id == id {
+                    insightData = insight
+                    break
+                }
+            }
+            if insightData != nil {
+                break
+            }
+        }
+        
+        insightData?.savedDateTime = Date()
+        
+        if let insight = insightData {
+            saved.append(insight)
+        } else {
+            print("Insight with ID \(id) not found.")
+        }
+    }
+    
+    // Remove an insight from saved list
+    func removeInsight(id: Int) {
+        if let index = saved.firstIndex(where: { $0.id == id }) {
+            saved.remove(at: index)
+        } else {
+            print("Insight with ID \(id) not found.")
+        }
+    }
+    
+    // Remove all insights from saved list
+    func removeAllInsights() {
+        saved.removeAll()
+    }
+    
+    // Get size of saved insights
+    func getSavedInsightsCount() -> Int {
+        return saved.count
+    }
+    
+    // Get insight by headings
+    func getInsight(byId id: Int) -> Insights {
+        return saved.filter { $0.id == id }.first!
+    }
+    
+    // Get heading by ID
+    func getHeading(byId id: Int) -> String? {
+        for category in ckOne.values {
+            for insight in category {
+                if insight.values.first!.id == id {
+                    return insight.keys.first
+                }
+            }
+        }
+        return nil
+    }
+    
+    // Check if an insight is saved
+    func isSaved(id: Int) -> Bool {
+        return saved.contains(where: { $0.id == id })
+    }
+    
 }

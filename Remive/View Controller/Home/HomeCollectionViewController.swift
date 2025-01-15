@@ -145,6 +145,7 @@ class HomeCollectionViewController: UICollectionViewController {
         
             let cellData = InsightData.shared.getTwoRandomInsights()[0]
             cell.image.layer.cornerRadius = 14
+            cell.image.contentMode = .scaleAspectFill
             cell.image.image = cellData.image
             cell.label1.text = cellData.headingOne
             cell.label2.text = cellData.headingTwo
@@ -255,36 +256,32 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     @IBSegueAction func presentInsight(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
-        
         if let cell = sender as? InsightCollectionViewCell {
-            return DetailTableViewController(coder: coder, data: cell.insight, heading1: cell.insight?.headingOne)
+            var isSaved: Bool = false
+            
+            if InsightData.shared.getSavedInsights().contains(where: { $0.id == cell.insight?.id }) {
+                isSaved = true
+            }
+            
+            return DetailTableViewController(coder: coder, data: cell.insight, heading1: cell.insight?.headingOne, isSaved: isSaved)
         }
-        
+
         return nil
     }
     
-    @IBSegueAction func homeToInsight(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
-       
-        if let cell = sender as? UICollectionViewCell,
-                let indexPath = collectionView.indexPath(for: cell) {
-                    let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
-            return DetailTableViewController(coder: coder, data: data, heading1: data.headingOne)
-                }
-        
-                return nil
+    @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
+        collectionView.reloadData()
     }
     
-    @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
+    @IBAction func unwindFromShowInsightToHome(_ unwindSegue: UIStoryboardSegue) {
     }
     
     @IBAction func thumbsUp(_ sender: UIButton) {
         if sender.currentImage == UIImage(systemName: "hand.thumbsup.fill") {
-                
-                sender.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
-            } else {
-               
-                sender.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
-            }
+            sender.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+        }
     }
     
     // MARK: UICollectionViewDelegate

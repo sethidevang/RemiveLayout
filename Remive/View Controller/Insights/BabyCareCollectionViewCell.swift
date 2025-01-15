@@ -10,8 +10,8 @@ import UIKit
 class BabyCareCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var image: UIImageView!
-    
     @IBOutlet var heading1: UILabel!
-    
     @IBOutlet var heading2: UILabel!
+    @IBOutlet weak var bookmarkButton: UIButton!
+    
 }
