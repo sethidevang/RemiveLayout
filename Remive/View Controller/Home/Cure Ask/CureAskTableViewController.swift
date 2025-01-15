@@ -157,7 +157,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
         
     }
     @IBSegueAction func moveCureTip(_ coder: NSCoder, sender: Any?) -> CureTipViewController? {
-        FamilyManager.shared.addHistory(toChildID: selectedChildId, condition: finalSymptom, remedy: selectedIngredient!)
+        FamilyManager.shared.addChildSearchHistory(toChildID: selectedChildId, condition: finalSymptom, remedy: selectedIngredient!)
         return CureTipViewController(coder: coder, data: selectedIngredient, symptom: finalSymptom)
     }
    
