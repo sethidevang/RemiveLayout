@@ -8,10 +8,11 @@
 import UIKit
 
 class CureAskTableViewController: UITableViewController, UICollectionViewDataSource {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButtonOutlet: UIButton!
     @IBOutlet weak var collectionViewRemedyCell: UICollectionView!
-    
+    @IBOutlet weak var kidNameLabel: UILabel!
     
     // List of symptoms
     private var selectedSymptoms: Set<String> = []   // Selected symptoms
@@ -20,6 +21,31 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
     private var finalSymptom: String = ""
     private var selectedChildId: Int = 1
     
+    init?(coder: NSCoder, id: Int) {
+        selectedChildId = id
+        
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView.collectionViewLayout = createLayout()
+        collectionView.dataSource = self
+        collectionViewRemedyCell.collectionViewLayout=createLayout()
+        collectionViewRemedyCell.dataSource = self
+//        resetButtonSelections()
+        submitButtonOutlet.layer.cornerRadius = 30
+        submitButtonOutlet.isEnabled = false
+        
+        if let kid = FamilyManager.shared.getChildDetails(byID: selectedChildId) {
+            kidNameLabel.text = "\(kid.firstName) \(kid.lastName ?? "")"
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
@@ -61,20 +87,6 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
         return UICollectionViewCell()
     }
     
-    
-
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        collectionView.collectionViewLayout = createLayout()
-        collectionView.dataSource = self
-        collectionViewRemedyCell.collectionViewLayout=createLayout()
-        collectionViewRemedyCell.dataSource = self
-//        resetButtonSelections()
-        submitButtonOutlet.layer.cornerRadius = 30
-        submitButtonOutlet.isEnabled = false
-    }
-
     func updateRemedies() {
         for symptom in selectedSymptoms {
             let remedies = RemedySuggestionsModel.shared.selectSymptom(symptom)
