@@ -13,7 +13,8 @@ private let headingReuseIdentifier = "Heading"
 class HomeCollectionViewController: UICollectionViewController {
     
     var selectedChildIndex = 0
-    var selectedChildId: IndexPath = IndexPath()
+    var selectedChildIndexPath: IndexPath = IndexPath()
+    var selectedChildId: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,6 @@ class HomeCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 4
     }
 
@@ -94,8 +94,7 @@ class HomeCollectionViewController: UICollectionViewController {
             if selectedChildIndex == indexPath.item {
                 cell.kidPhoto.layer.borderWidth = 3
                 cell.kidPhoto.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
-//                selectedChildIndex = indexPath.item
-                selectedChildId = indexPath
+                selectedChildIndexPath = indexPath
             }
 
             return cell
@@ -162,7 +161,7 @@ class HomeCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.item < FamilyManager.shared.getChildCount() {
-            if let cell = collectionView.cellForItem(at: selectedChildId) as? BabyCardCollectionViewCell {
+            if let cell = collectionView.cellForItem(at: selectedChildIndexPath) as? BabyCardCollectionViewCell {
                 cell.kidPhoto.layer.borderWidth = 0
             }
                 
@@ -170,7 +169,8 @@ class HomeCollectionViewController: UICollectionViewController {
                 cell.kidPhoto.layer.borderWidth = 3
                 cell.kidPhoto.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
                 selectedChildIndex = indexPath.item
-                selectedChildId = indexPath
+                selectedChildIndexPath = indexPath
+                selectedChildId = FamilyManager.shared.getChildDetails(byIndex: indexPath.item)!.id
             }
             
             collectionView.reloadSections(IndexSet(integer: 2))
@@ -267,6 +267,10 @@ class HomeCollectionViewController: UICollectionViewController {
         }
 
         return nil
+    }
+    
+    @IBSegueAction func homeToCureAsk(_ coder: NSCoder) -> CureAskTableViewController? {
+        return CureAskTableViewController(coder: coder, id: selectedChildId)
     }
     
     @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
