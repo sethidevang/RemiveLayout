@@ -82,10 +82,10 @@ class BabyAboutCollectionViewController: UICollectionViewController {
                 cell.data.text = "Month"
                 cell.heading.text = "\(cellData?.age ?? 1)"
             case 1:
-                cell.data.text = "Height"
+                cell.data.text = "Height (cm)"
                 cell.heading.text = "\(cellData?.height ?? 1)"
             case 2:
-                cell.data.text = "Kg"
+                cell.data.text = "kg"
                 cell.heading.text = "\(cellData?.weight ?? 1)"
             default:
                 return UICollectionViewCell()
@@ -206,6 +206,10 @@ class BabyAboutCollectionViewController: UICollectionViewController {
     
     @IBSegueAction func aboutToBabyDetails(_ coder: NSCoder, sender: Any?) -> JackTableViewController? {
         return JackTableViewController(coder: coder, childId: selectedChildID)
+    }
+    
+    @IBSegueAction func babyAboutToAlTrack(_ coder: NSCoder) -> AlTrackTableViewController? {
+        return AlTrackTableViewController(coder: coder, selectedChildId: selectedChildID)
     }
     
 }

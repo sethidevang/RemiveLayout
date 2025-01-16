@@ -138,10 +138,6 @@ class FamilyManager {
         )
     
     private var allAllergyCategories: [AllergyCategory] = [
-//        .aloeVera,
-//        .bakingSoda,
-//        .calendula,
-//        .cardamom,.chamomileTea,.chewingGum,.coconutOil,.cornstarchPowder,.cuminSeeds,.fruitJuice,.garlicOil,.ginger,.gripeWater,.honey,.lemon,.
         .aloeVera,.bakingSoda,.calendula,.cardamom,.chamomileTea,.coconut,.cornstarch,.cumin,.garlic,.ginger,.honey,.lavender,.lemon,.oatmeal,.olive,.onion,.turmeric
     ]
     
@@ -917,6 +913,7 @@ class RemedySuggestionsModel {
         }
         allergies = kidDetail.alTrack
     }
+    
     //to get the allergy
     func getAllergies() -> [AllergyCategory] {
         return allergies

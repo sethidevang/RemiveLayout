@@ -1,61 +1,70 @@
 //
-//  AlTrackTableViewController.swift
+//  EditAlTrackTableViewController.swift
 //  Remive
 //
-//  Created by Disha Sharma on 01/12/24.
+//  Created by Dakshdeep Singh - University on 16/01/25.
 //
 
 import UIKit
 
-class AlTrackTableViewController: UITableViewController {
+class EditAlTrackTableViewController: UITableViewController {
     
     let selectedChildId: Int
-    var allergy: [AllergyCategory] = []
+    let allAllergies: [AllergyCategory] = FamilyManager.shared.getAllAllergies()
+    var selectedAllergies: [AllergyCategory] = []
     
-    init?(coder: NSCoder, selectedChildId: Int) {
+    init?(selectedChildId: Int, coder: NSCoder) {
         self.selectedChildId = selectedChildId
-        allergy = FamilyManager.shared.getAllergies(ofChildID: selectedChildId)
-        
+        selectedAllergies = FamilyManager.shared.getAllergies(ofChildID: selectedChildId)
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        allergy = FamilyManager.shared.getAllergies(ofChildID: selectedChildId)
-        tableView.reloadData()
+        navigationController?.navigationBar.tintColor = UIColor(red: 1, green: 10/255, blue: 84/255, alpha: 1.0)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allergy.count
+        return allAllergies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AlTrackTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "alTrackCell", for: indexPath)
 
-        cell.updateUI(allergy:  allergy[indexPath.row].rawValue)
+        cell.textLabel?.text = allAllergies[indexPath.row].rawValue
         
+        if selectedAllergies.contains(where: { $0.rawValue == allAllergies[indexPath.row].rawValue }) {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cell = tableView.cellForRow(at: indexPath)!
+        
+        if cell.accessoryType == .checkmark {
+            cell.accessoryType = .none
+            selectedAllergies.removeAll(where: { $0.rawValue == allAllergies[indexPath.row].rawValue })
+            FamilyManager.shared.removeAllergy(fromChildID: selectedChildId, allergy: allAllergies[indexPath.row])
+        } else {
+            cell.accessoryType = .checkmark
+            selectedAllergies.append(allAllergies[indexPath.row])
+            FamilyManager.shared.addAllergy(toChildID: selectedChildId, allergy: allAllergies[indexPath.row])
+        }
     }
-    
-    @IBSegueAction func alTrackToEditAlTrack(_ coder: NSCoder, sender: Any?) -> EditAlTrackTableViewController? {
-        return EditAlTrackTableViewController(selectedChildId: selectedChildId, coder: coder)
-    }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

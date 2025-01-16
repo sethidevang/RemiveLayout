@@ -10,22 +10,15 @@ import UIKit
 class JackTableViewController: UITableViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet var imageOutlet: UIImageView!
-    
     @IBOutlet var dobDatePicker: UIDatePicker!
-    
     @IBOutlet weak var firstName: UITextField!
-    
     @IBOutlet weak var lastName: UITextField!
-    
     @IBOutlet weak var weight: UITextField!
-    
     @IBOutlet weak var height: UITextField!
-    
     @IBOutlet weak var allergyCount: UILabel!
-    var selectedChildID: Int
-    
     @IBOutlet weak var genderText: UIButton!
     
+    var selectedChildID: Int
     
 //    cell.kidPhoto.layer.cornerRadius = cell.kidPhoto.frame.size.width / 2
 //    cell.clipsToBounds = true
@@ -40,9 +33,12 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)
+        
         imageOutlet.layer.cornerRadius = imageOutlet.frame.size.width / 2
         imageOutlet.image = cellData?.photo
         firstName.text = cellData?.firstName
@@ -52,7 +48,10 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         allergyCount.text = "\(cellData?.alTrack.count ?? 0)"
 //        genderText.titleLabel?.text = cellData?.gender
         genderText.setTitle(cellData?.gender, for: .normal)
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @IBAction func editButtonTapped(_ sender: Any) {
