@@ -6,12 +6,7 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		36AC36332D38CA44004C0801 /* EditAlTrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC36322D38CA44004C0801 /* EditAlTrackTableViewController.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		36AC36322D38CA44004C0801 /* EditAlTrackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditAlTrackTableViewController.swift; path = "Remive/View Controller/Home/Profile/EditAlTrackTableViewController.swift"; sourceTree = "<group>"; };
 		6B9A8E7F2CF9A24D00640063 /* Remive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,7 +45,6 @@
 		6B9A8E762CF9A24D00640063 = {
 			isa = PBXGroup;
 			children = (
-				36AC36322D38CA44004C0801 /* EditAlTrackTableViewController.swift */,
 				6B9A8E812CF9A24D00640063 /* Remive */,
 				6B9A8E802CF9A24D00640063 /* Products */,
 			);
@@ -138,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36AC36332D38CA44004C0801 /* EditAlTrackTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

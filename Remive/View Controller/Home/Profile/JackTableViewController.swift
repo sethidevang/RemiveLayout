@@ -8,7 +8,7 @@
 import UIKit
 
 class JackTableViewController: UITableViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-
+    
     @IBOutlet var imageOutlet: UIImageView!
     @IBOutlet var dobDatePicker: UIDatePicker!
     @IBOutlet weak var firstName: UITextField!
@@ -19,12 +19,7 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
     @IBOutlet weak var genderText: UIButton!
     
     var selectedChildID: Int
-    
-//    cell.kidPhoto.layer.cornerRadius = cell.kidPhoto.frame.size.width / 2
-//    cell.clipsToBounds = true
-//    cell.kidPhoto.image = cellData?.photo
-//    cell.labelOutlet.text = "\(cellData?.firstName ?? "") \(cellData?.lastName ?? "")"
-//    
+   
     init?(coder: NSCoder, childId: Int) {
         selectedChildID = childId
         super.init(coder: coder)
@@ -34,11 +29,16 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         
-        let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)
         
+        
+        let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)
+        dobDatePicker.date = cellData?.dob ?? .now
         imageOutlet.layer.cornerRadius = imageOutlet.frame.size.width / 2
         imageOutlet.image = cellData?.photo
         firstName.text = cellData?.firstName
@@ -46,9 +46,11 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         weight.text = "\(cellData?.weight ?? 1)"
         height.text = "\(cellData?.height ?? 0)"
         allergyCount.text = "\(cellData?.alTrack.count ?? 0)"
-//        genderText.titleLabel?.text = cellData?.gender
+        //        genderText.titleLabel?.text = cellData?.gender
         genderText.setTitle(cellData?.gender, for: .normal)
+        
     }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -62,7 +64,7 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-//        
+        //
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in print("User has choosen camera")
                 imagePicker.sourceType = .camera
@@ -70,7 +72,7 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
             })
             alertController.addAction(cameraAction)
         }
-
+        
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {action in print("User has choosen photo library")
                 imagePicker.sourceType = .photoLibrary
@@ -91,71 +93,17 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    @IBAction func doneClicked(_ sender: UIBarButtonItem) {
+        var newChildDetail = FamilyManager.shared.getChildDetails(byID: selectedChildID)
+        
+        newChildDetail?.firstName = firstName.text!
+        newChildDetail?.lastName=lastName.text
+        newChildDetail?.dob=dobDatePicker.date
+        newChildDetail?.weight=Double(weight.text ?? "")
+        newChildDetail?.height=Double(height.text ?? "")
+        newChildDetail?.photo=imageOutlet.image
+        FamilyManager.shared.updateChildDetails(byID: selectedChildID, with: newChildDetail!)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

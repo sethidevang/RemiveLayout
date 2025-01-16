@@ -146,6 +146,7 @@ class FamilyManager {
     
     private init() {}
     
+    
     func updateParentDetails(details: ParentDetail) {
         parentDetail = details
     }
@@ -405,7 +406,7 @@ class RemedySuggestionsModel {
                 Remedy(
                     title: "Fluids",
                     shortDescription: "Drinking plenty of water is one of the simplest and most effective remedies for congestion during a cold. Staying hydrated helps to loosen mucus, keep your nasal passages moist, and prevent dehydration, especially warm water",
-                    steps: ["If your baby is under 6 months old, the primary source of hydration will still be breast milk or formula and for older give plain water.", "For formula-fed babies, continue to offer their usual formula at regular intervals.", "Give hot liquids for older than 6 months.", "Keep an eye on the baby's diaper output. Fewer wet diapers may indicate dehydration, which requires immediate medical attention."],
+                    steps: ["If your baby is under 6 months old, the primary source of hydration will still be breast milk or formula and for older give plain water.", "For formula-fed babies, continue to offer their usual formula at regular intervals.", "Give hot liquids for older than 6 months."],
                     images: ["2.5.1","2.5.2","2.5.3"],
                     link: "https://www.mayoclinic.org/diseases-conditions/common-cold/in-depth/cold-remedies/art-20046403#:~:text=Cold%20remedies%20that%20work,unit%20as%20the%20maker%20instructs."
                 ),
@@ -760,7 +761,7 @@ class RemedySuggestionsModel {
                             "Keep the pressure light and soothing." ,
                             "Continue for up to 21 days to ensure proper closure and healing."
                            ],
-                    images: ["7.4.1","7.4.2","7.4.3"],
+                    images: ["7.4.1","7.4.2","7.4.3", "7.4.3"],
                     link: "https://kendamil.com/blogs/blog/how-to-stop-baby-hiccups-home-remedies-and-techniques#:~:text=Massaging%20your%20baby's%20back%20can,down%20to%20their%20lower%20back.&text=Sucking%20on%20a%20dummy%20can,baby's%20breathing%20and%20stop%20hiccups."
                 ),
                 Remedy(

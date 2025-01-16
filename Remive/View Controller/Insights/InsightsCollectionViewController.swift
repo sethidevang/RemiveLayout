@@ -180,19 +180,24 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
     }
     
     
-    @IBAction func shareButtonTapped(_ sender: Any) {
-        
-//        let activityController = UIActivityViewController(activityItems: [image, "image"], applicationActivities: nil)
-//
-//        present(activityController, animated: true, completion: nil)
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        //to share the image with the link of the selected item
+//        if let cell = sender as? UICollectionViewCell,
+//           let indexPath = collectionView.indexPath(for: cell) {
+//            let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
+//            
+            let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: .none)
+            activityController.popoverPresentationController?.sourceView = sender
+            present(activityController, animated: true, completion: nil)
+//        }
     }
+    
     
     @IBAction func savedInsightButton(_ sender: UIButton) {
         if sender.currentImage == UIImage(systemName: "bookmark.fill") {
             sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
             InsightData.shared.removeInsight(id: sender.tag)
         } else {
-            // If the image is unfilled, change it to filled
             sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             InsightData.shared.saveInsight(id: sender.tag)
         }

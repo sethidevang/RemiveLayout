@@ -23,6 +23,7 @@ class UserProfileTableViewController: UITableViewController {
     
     
     var userParent = FamilyManager.shared.getParentDetails()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         image.layer.cornerRadius = image.frame.size.width / 2
@@ -32,7 +33,7 @@ class UserProfileTableViewController: UITableViewController {
         phoneNumber.text = "\(userParent.phoneNumber)"
         mail.text = userParent.email
         address.text = userParent.address
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -42,6 +43,17 @@ class UserProfileTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+//    @IBAction func changeAddress(_ sender: UITextField) {
+//        userParent.address = sender.text
+//    }
+    
+    @IBAction func changeAddress(_ sender: UITextField) {
+//        userParent.address = sender.text
+        var newParentDetail : ParentDetail = userParent
+        newParentDetail.address = sender.text
+        FamilyManager.shared.updateParentDetails(details: newParentDetail)
+        
+    }
     
 
     /*
