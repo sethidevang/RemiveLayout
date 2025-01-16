@@ -30,7 +30,7 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
             
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(0.8),
-                heightDimension: .fractionalHeight(0.3))
+                heightDimension: .fractionalHeight(0.315))
             
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             
@@ -152,6 +152,7 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
         return nil
     }
     
+    
 //    @IBSegueAction func segue1(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
 //        if let cell = sender as? UICollectionViewCell,
 //        let indexPath = collectionView.indexPath(for: cell) {
@@ -176,6 +177,14 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
                 collectionView.reloadData()
             }
         }
+    }
+    
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        
+//        let activityController = UIActivityViewController(activityItems: [image, "image"], applicationActivities: nil)
+//
+//        present(activityController, animated: true, completion: nil)
     }
     
     @IBAction func savedInsightButton(_ sender: UIButton) {
