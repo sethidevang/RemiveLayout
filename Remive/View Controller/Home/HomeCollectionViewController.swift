@@ -236,6 +236,8 @@ class HomeCollectionViewController: UICollectionViewController {
             }
             
             collectionView.reloadSections(IndexSet(integer: 2))
+        } else {
+            performSegue(withIdentifier: "homeToAddBaby", sender: self)
         }
     }
     

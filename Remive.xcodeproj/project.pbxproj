@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		367248282D3A3B8100AA2B55 /* AddBabyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367248272D3A3B8100AA2B55 /* AddBabyTableViewController.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		367248272D3A3B8100AA2B55 /* AddBabyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddBabyTableViewController.swift; path = "Remive/View Controller/Home/AddBabyTableViewController.swift"; sourceTree = "<group>"; };
 		7CC765142CC2540B000AD0F9 /* Remive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,6 +50,7 @@
 		7CC7650B2CC2540B000AD0F9 = {
 			isa = PBXGroup;
 			children = (
+				367248272D3A3B8100AA2B55 /* AddBabyTableViewController.swift */,
 				7CC765162CC2540B000AD0F9 /* Remive */,
 				7CC765152CC2540B000AD0F9 /* Products */,
 			);
@@ -132,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367248282D3A3B8100AA2B55 /* AddBabyTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
