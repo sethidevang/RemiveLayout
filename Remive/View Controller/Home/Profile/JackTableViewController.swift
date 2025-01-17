@@ -31,11 +31,7 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
     
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
-        
-        
         
         let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)
         dobDatePicker.date = cellData?.dob ?? .now
@@ -102,7 +98,10 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         newChildDetail?.weight=Double(weight.text ?? "")
         newChildDetail?.height=Double(height.text ?? "")
         newChildDetail?.photo=imageOutlet.image
+        
         FamilyManager.shared.updateChildDetails(byID: selectedChildID, with: newChildDetail!)
+        
+        performSegue(withIdentifier: "unwindToUpdatedBabyAbout", sender: self)
     }
     
     

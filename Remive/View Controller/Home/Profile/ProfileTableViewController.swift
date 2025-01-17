@@ -10,10 +10,48 @@ import UIKit
 class ProfileTableViewController: UITableViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var userName: UILabel!
-    
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet var collection: UICollectionView!
     
     var userDetail = FamilyManager.shared.getParentDetails()
+    
+    func createLayout() -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            var section : NSCollectionLayoutSection
+            
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .absolute(120))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 0)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            section = NSCollectionLayoutSection(group: group)
+                        section.orthogonalScrollingBehavior = .groupPaging
+            return section
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collection.dataSource = self
+        collection.collectionViewLayout = createLayout()
+        ParentDetail()
+//        let layout = UICollectionViewFlowLayout()
+//                layout.itemSize = CGSize(width: 100, height: 100) // Cell size
+//                layout.minimumLineSpacing = 10
+//                layout.minimumInteritemSpacing = 10
+//                collection.collectionViewLayout = layout
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func ParentDetail(){
         userName.text = "\(userDetail.firstName)" + " " + "\(userDetail.lastName ?? "Dummy")"
@@ -37,6 +75,8 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
             if let cellData = FamilyManager.shared.getChildDetails(byIndex: indexPath.item) {
                 cell.photo.layer.cornerRadius = cell.photo.frame.size.width / 2
                 cell.photo.image = cellData.photo
+                cell.photo.clipsToBounds = true
+                cell.photo.contentMode = .scaleAspectFill
                 let firstName = cellData.firstName
                 let lastName = cellData.lastName ?? ""
                 cell.name.text = "\(firstName) \(lastName)"
@@ -53,50 +93,9 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
         return cell
     }
     
-
-    @IBOutlet var collection: UICollectionView!
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collection.dataSource = self
-        collection.collectionViewLayout = createLayout()
-        ParentDetail()
-//        let layout = UICollectionViewFlowLayout()
-//                layout.itemSize = CGSize(width: 100, height: 100) // Cell size
-//                layout.minimumLineSpacing = 10
-//                layout.minimumInteritemSpacing = 10
-//                collection.collectionViewLayout = layout
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    func createLayout() -> UICollectionViewLayout {
-        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            var section : NSCollectionLayoutSection
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .absolute(120))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 0)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            
-            section = NSCollectionLayoutSection(group: group)
-                        section.orthogonalScrollingBehavior = .groupPaging
-            return section
-        }
-    }
-    
     @IBAction func unwindToGoBack(_ unwindSegue: UIStoryboardSegue) {
-        _ = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
+        tableView.reloadData()
+        collection.reloadData()
     }
     
     @IBSegueAction func profileToBabyAbout(_ coder: NSCoder, sender: Any?) -> BabyAboutCollectionViewController? {

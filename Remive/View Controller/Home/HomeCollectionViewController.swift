@@ -23,6 +23,14 @@ class HomeCollectionViewController: UICollectionViewController {
             
             switch sectionIndex {
             case 0:
+//                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(120))
+//                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+//                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.43), heightDimension: .absolute(120))
+//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//                section = NSCollectionLayoutSection(group: group)
+//                section.orthogonalScrollingBehavior = .groupPaging
+                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(120))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 37, bottom: 0, trailing: 37)
@@ -130,6 +138,7 @@ class HomeCollectionViewController: UICollectionViewController {
                 if let cellData = FamilyManager.shared.getChildDetails(byIndex: indexPath.item) {
                     cell.kidPhoto.layer.cornerRadius = cell.kidPhoto.frame.size.width / 2
                     cell.clipsToBounds = true
+                    cell.kidPhoto.contentMode = .scaleAspectFill
                     cell.kidPhoto.image = cellData.photo
                     let firstName = cellData.firstName
                     let lastName = cellData.lastName ?? ""

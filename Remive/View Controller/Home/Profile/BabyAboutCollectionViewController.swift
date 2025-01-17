@@ -35,8 +35,6 @@ class BabyAboutCollectionViewController: UICollectionViewController {
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headingReuseIdentifier)
     }
 
-   
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 4
     }
@@ -202,6 +200,10 @@ class BabyAboutCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func unwindToBabyAbout(_ unwindSegue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func unwindToEditedBabyAbout(_ unwindSegue: UIStoryboardSegue) {
+        collectionView.reloadSections(IndexSet(integersIn: 0..<2))
     }
     
     @IBSegueAction func aboutToBabyDetails(_ coder: NSCoder, sender: Any?) -> JackTableViewController? {
