@@ -83,7 +83,26 @@ class DetailTableViewController: UITableViewController {
                 navigationItem.leftBarButtonItem?.image = UIImage(systemName: "bookmark")
                 InsightData.shared.removeInsight(id: data?.id ?? -1)
             }
+            
+            
         }
     }
     
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        guard let image = data?.image,
+              let link = data?.link
+         else {
+            print("Error: Image is missing for the shared item.")
+            return
+        }
+        
+        let itemsToShare: [Any] = [image, link]
+        let activityController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+        
+        if let popoverController = activityController.popoverPresentationController {
+            popoverController.sourceView = sender as? UIView
+        }
+        
+        present(activityController, animated: true, completion: nil)
+    }
 }

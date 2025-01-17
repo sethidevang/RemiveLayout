@@ -56,6 +56,8 @@ class CureTipViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.tableStep.text = data?.steps[indexPath.row]
         if let image = data?.images[indexPath.row] {
             cell.tablePhoto.image = UIImage(named: image)
+            cell.tablePhoto.clipsToBounds = true
+            cell.tablePhoto.contentMode = .scaleAspectFill
         } else {
             cell.tablePhoto.image = UIImage(systemName: "questionmark.circle")
             cell.tablePhoto.tintColor = UIColor(red: 1, green: 10/255, blue: 84/255, alpha: 1)

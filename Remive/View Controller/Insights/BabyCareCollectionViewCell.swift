@@ -13,5 +13,6 @@ class BabyCareCollectionViewCell: UICollectionViewCell {
     @IBOutlet var heading1: UILabel!
     @IBOutlet var heading2: UILabel!
     @IBOutlet weak var bookmarkButton: UIButton!
+    @IBOutlet var shareButton: UIButton!
     
 }

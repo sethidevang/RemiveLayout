@@ -1040,7 +1040,7 @@ class InsightData {
     
     static var shared = InsightData()
     
-    private var ckOne : [InsightCatogory : [[String: Insights]]] = [
+    public var ckOne : [InsightCatogory : [[String: Insights]]] = [
         .babyCare: [
             ["Keeping the Baby Warm" : Insights(
                 id:1,
@@ -1287,6 +1287,23 @@ class InsightData {
             print("Invalid Section")
             fatalError("Invalid section")
         }
+    }
+    func getInsightByIdFromAllInsights(_ id: Int) -> Insights? {
+        var insightData: Insights?
+        
+        for category in ckOne.values {
+            for item in category {
+                if let insight = item.values.first, insight.id == id {
+                    insightData = insight
+                    break
+                }
+            }
+            if insightData != nil {
+                return insightData
+            }
+        }
+        
+        return nil
     }
     func getInsightCount() -> Int {
         return ckOne.count

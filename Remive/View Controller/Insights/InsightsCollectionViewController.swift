@@ -87,6 +87,7 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
         cell.layer.cornerRadius = 20
         cell.layer.borderWidth = 0.8
         cell.bookmarkButton.tag = data.id
+        cell.shareButton.tag = data.id
         
         if InsightData.shared.getSavedInsights().contains(where: { $0.id == data.id }) {
             cell.bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
@@ -179,17 +180,25 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
         }
     }
     
-    
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        //to share the image with the link of the selected item
-//        if let cell = sender as? UICollectionViewCell,
-//           let indexPath = collectionView.indexPath(for: cell) {
-//            let data = InsightData.shared.getInsight(section: indexPath.section, item: indexPath.item)
-//            
-            let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: .none)
-            activityController.popoverPresentationController?.sourceView = sender
-            present(activityController, animated: true, completion: nil)
-//        }
+        guard let insight = InsightData.shared.getInsightByIdFromAllInsights(sender.tag) else {
+            print("No Insight found with the given ID.")
+            return
+        }
+        guard let image = insight.image
+         else {
+            print("Error: Image is missing for the shared item.")
+            return
+        }
+        
+        let itemsToShare: [Any] = [image, insight.link]
+        let activityController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+        
+        if let popoverController = activityController.popoverPresentationController {
+            popoverController.sourceView = sender
+        }
+        
+        present(activityController, animated: true, completion: nil)
     }
     
     
