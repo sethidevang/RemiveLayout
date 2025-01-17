@@ -87,6 +87,10 @@ class SavedInsightTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToSavedInsight(_ unwindSegue: UIStoryboardSegue) {
+        
+        savedInsights = InsightData.shared.getSavedInsights()
+        
+        tableView.reloadData()
     }
 
     @IBAction func clearAllSavedInsightsButtonPressed(_ sender: UIBarButtonItem) {

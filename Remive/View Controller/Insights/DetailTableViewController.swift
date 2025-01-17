@@ -105,4 +105,13 @@ class DetailTableViewController: UITableViewController {
         
         present(activityController, animated: true, completion: nil)
     }
+    
+    @IBAction func learnMoreButtonTapped(_ sender: UIButton) {
+        if let link = data?.link, let url = URL(string: link) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            print("Error: Invalid URL.")
+        }
+    }
+    
 }
