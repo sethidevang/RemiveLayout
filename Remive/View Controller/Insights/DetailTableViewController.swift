@@ -68,6 +68,10 @@ class DetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
 
+        cell.backgroundColor = UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? UIColor.clear : UIColor.white
+        }
+
         // Disable the default selection highlight effect by setting selectionStyle to .none
         cell.selectionStyle = .none
 

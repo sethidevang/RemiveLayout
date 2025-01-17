@@ -9,6 +9,7 @@ import UIKit
 
 class CureAskTableViewController: UITableViewController, UICollectionViewDataSource {
     
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButtonOutlet: UIButton!
     @IBOutlet weak var collectionViewRemedyCell: UICollectionView!
@@ -45,6 +46,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
         if let kid = FamilyManager.shared.getChildDetails(byID: selectedChildId) {
             kidNameLabel.text = "\(kid.firstName) \(kid.lastName ?? "")"
         }
+//        symptomButt
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,6 +65,9 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
             //                let symptom = symptoms[indexPath.row]
             let symptom = RemedySuggestionsModel.shared.getSymptomTitles()[indexPath.row]
             //            cell.symptomButton.text = symptom
+            if traitCollection.userInterfaceStyle == .dark {
+                cell.symptomButton.tintColor = .white // White border for Dark Mode
+            }
             cell.symptomButton.setTitle(symptom, for: .normal)
             
             // Set the border for the button and the corner radius
@@ -70,6 +75,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
             cell.symptomButton.layer.cornerRadius = 10
             cell.symptomButton.layer.masksToBounds = true
             cell.symptomButton.layer.borderColor = CGColor(red: 0.961, green: 0.039, blue: 0.329, alpha: 1.0)
+            
 //            cell.symptomButto
             
             return cell
@@ -81,6 +87,9 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
             cell.layer.cornerRadius = 10.0
             cell.layer.borderWidth = 2.0
             cell.layer.borderColor = CGColor(red: 0.961, green: 0.039, blue: 0.329, alpha: 1.0)
+            if traitCollection.userInterfaceStyle == .dark {
+                cell.remedyButton.tintColor = .white
+            }
             return cell
         }
         

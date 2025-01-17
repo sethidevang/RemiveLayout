@@ -88,6 +88,9 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
         cell.layer.borderWidth = 0.8
         cell.bookmarkButton.tag = data.id
         cell.shareButton.tag = data.id
+        if traitCollection.userInterfaceStyle == .dark {
+            cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)  // White border for Dark Mode
+        }
         
         if InsightData.shared.getSavedInsights().contains(where: { $0.id == data.id }) {
             cell.bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)

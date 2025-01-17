@@ -11,7 +11,7 @@ class SymptomCollectionViewCell: UICollectionViewCell {
    
 
     @IBOutlet weak var symptomButton: UIButton!
-    
+   
     
    
 }

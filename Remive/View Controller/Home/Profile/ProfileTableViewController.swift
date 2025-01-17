@@ -50,18 +50,22 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return FamilyManager.shared.getChildCount() + 1
+        return FamilyManager.shared.getChildCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Profile", for: indexPath) as! ProfileIconCollectionViewCell
         
-        if indexPath.item == FamilyManager.shared.getChildCount() {
-            cell.photo.image = UIImage(named: "add")
-            cell.photo.layer.cornerRadius = cell.photo.frame.size.width / 2
-            cell.clipsToBounds = true
-            cell.name.text = "Add Child"
-        } else {
+        
+        //to add the add child option on the profile page... uncomment this
+        
+//        if indexPath.item == FamilyManager.shared.getChildCount() {
+//            cell.photo.image = UIImage(named: "add")
+//            cell.photo.layer.cornerRadius = cell.photo.frame.size.width / 2
+//            cell.clipsToBounds = true
+//            cell.name.text = "Add Child"
+//        } else {
+        
             if let cellData = FamilyManager.shared.getChildDetails(byIndex: indexPath.item) {
                 cell.photo.layer.cornerRadius = cell.photo.frame.size.width / 2
                 cell.photo.image = cellData.photo
@@ -78,7 +82,8 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
                 cell.photo.backgroundColor = UIColor(red: 242, green: 134, blue: 155, alpha: 1)
                 cell.name.text = "No Name"
             }
-        }
+        //for childAdd Option
+//        }
     
         return cell
     }

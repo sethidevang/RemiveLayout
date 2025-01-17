@@ -168,6 +168,11 @@ class HomeCollectionViewController: UICollectionViewController {
             cell.nextSymbol.image = UIImage(systemName: "chevron.right")!
 
             cell.layer.borderWidth = 1.0
+//            cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
+            if traitCollection.userInterfaceStyle == .dark {
+                cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
+                
+            }
             cell.layer.cornerRadius = 14
             
             return cell
@@ -197,8 +202,12 @@ class HomeCollectionViewController: UICollectionViewController {
                     cell.time.text = "Date not valid"
                 }
             }
-            cell.layer.cornerRadius = 14
             cell.layer.borderWidth = 1
+
+            if traitCollection.userInterfaceStyle == .dark {
+                cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)  // White border for Dark Mode
+            }
+            cell.layer.cornerRadius = 14
          
             return cell
         case 3:
@@ -213,7 +222,9 @@ class HomeCollectionViewController: UICollectionViewController {
             cell.layer.cornerRadius = 14
             cell.layer.borderWidth = 1
             cell.insight = cellData
-            
+            if traitCollection.userInterfaceStyle == .dark {
+                cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)  // White border for Dark Mode
+            }
             return cell
        
         default:
