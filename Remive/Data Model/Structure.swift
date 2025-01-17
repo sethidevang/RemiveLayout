@@ -1032,6 +1032,7 @@ struct Insights {
     var dataTwo : String?
     var savedDateTime : Date? = nil
     var allergyCategory: [AllergyCategory]
+    var link: String
 }
 
 //dont make everything nil
@@ -1050,7 +1051,8 @@ class InsightData {
                 dataOne: "To help newborns and children maintain body temperature, dress them in one or two more layers than you'd wear. Check their skin—add layers if it feels cold, but avoid overheating, which can pose health risks.",
                 subheadingTwo: "Head Covering for Warmth",
                 dataTwo: "To prevent heat loss, keep a newborn’s head covered in cooler environments. A soft, breathable hat provides warmth and airflow, ideal for cold weather. Indoors in warm settings, a hat may not be needed.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.who.int/tools/your-life-your-health/life-phase/newborns-and-children-under-5-years/caring-for-newborns"
             ),
             ],
             ["Ensuring Safe Sleep for Babies and Young Children" : Insights(
@@ -1062,7 +1064,8 @@ class InsightData {
                 dataOne: "Always place babies on their backs to sleep, as this position reduces the risk of Sudden Infant Death Syndrome (SIDS). Ensure a safe sleep environment with a firm mattress, fitted sheet, and no soft objects like pillows or stuffed animals, which could obstruct breathing.",
                 subheadingTwo: "Sleep Duration and Environment",
                 dataTwo: "Newborns typically need 14-17 hours of sleep. As they grow, sleep needs decrease but remain essential. Ensure a quiet, dark room to support better sleep quality.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.who.int/tools/your-life-your-health/life-phase/newborns-and-children-under-5-years/making-sure-newborns-and-children-under-5-years-sleep-safely"
             ),
             ],
             ["Hygiene and Safety Measures" : Insights(
@@ -1074,7 +1077,8 @@ class InsightData {
                 dataOne: "Maintain good hygiene by washing hands thoroughly before handling your baby. Babies’ immune systems are still developing, so a clean environment is crucial. Use clean water for food and keep the area free from waste and contaminants to reduce illness risks.",
                 subheadingTwo: "Home Safety Precautions",
                 dataTwo: "Store toxic items like chemicals and medicines out of reach. Ensure pools or open water areas are secured. A smoke-free environment is vital—avoid smoking indoors or near your baby to protect their respiratory health",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.who.int/tools/your-life-your-health/life-phase/newborns-and-children-under-5-years/newborns-and-children-under-5-years-clean-and-safe"
             ),
             ],
             ["Engaging and Bonding with Your Baby" : Insights(
@@ -1086,7 +1090,8 @@ class InsightData {
                 dataOne: "Talking to your baby and making eye contact helps them feel secure and promotes development. Engage through gentle talk and touch, fostering a bond and creating a foundation for emotional security.",
                 subheadingTwo: "Physical Activity for Development",
                 dataTwo: "Encourage daily physical activity, like tummy time for muscle strength. As your baby grows, promote more active play like reaching and crawling. For older children, aim for 180 minutes of activity per day for physical and mental health.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.who.int/tools/your-life-your-health/life-phase/newborns-and-children-under-5-years/engaging-and-having-fun-with-newborns-and-children-under-5-years"
             ),
             ],
             ["Proper Care and Handling of Your Baby" : Insights(
@@ -1098,7 +1103,8 @@ class InsightData {
                 dataOne: "Always support your baby’s head and neck when lifting or carrying them, as they are still fragile. Avoid shaking, as it can cause serious injury. Seek help if you feel overwhelmed to avoid handling frustration.",
                 subheadingTwo: "Bonding Through Physical Contact",
                 dataTwo: "Skin-to-skin contact, or kangaroo care, helps regulate temperature and soothes your baby, fostering a sense of safety and attachment crucial for emotional development.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://kidshealth.org/en/parents/guide-parents.html"
             ),
             ],
             ["Diapering and Bathing Care" : Insights(
@@ -1110,7 +1116,8 @@ class InsightData {
                 dataOne: "Have all diapering supplies within reach and clean from front to back to avoid infection. Apply diaper cream as needed and wash your hands thoroughly afterward to prevent spreading germs.",
                 subheadingTwo: "Bathing Newborns Safely",
                 dataTwo: "Use sponge baths initially, transitioning to regular baths once the umbilical stump heals. Keep water warm, not hot, and bathe only a few times a week to protect sensitive skin from drying out.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://kidshealth.org/en/parents/diapering.html"
             ),
             ],
             ["Feeding and Sleep Patterns" : Insights(
@@ -1122,7 +1129,8 @@ class InsightData {
                 dataOne: "Newborns typically need feeding every 2-3 hours. Breastfeeding provides essential nutrients. Monitor for enough wet diapers and weight gain, and consult a pediatrician if concerned about feeding adequacy.",
                 subheadingTwo: "Sleep Habits and Environment",
                 dataTwo: "Newborns may sleep up to 16 hours daily but often in short periods. Follow safe sleep practices by placing them on their back and avoiding loose bedding. Establish a routine to help your baby develop a healthy sleep pattern as they grow.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://kidshealth.org/en/parents/breastfeed-often.html"
             ),
             ]
         ],
@@ -1136,7 +1144,8 @@ class InsightData {
                 dataOne: "At 6–8 months, breastmilk remains your baby's main source of nutrition, but solid foods should now be added. Offer half a cup of soft foods two to three times a day, along with small healthy snacks. Focus on mashed fruits, vegetables, grains, and tubers, while avoiding honey until after one year. If your baby refuses a food, try again later or mix it with a familiar food.",
                 subheadingTwo: "9-11 Months: Advancing to Finger Foods",
                 dataTwo: "From 9–11 months, offer half a cup of food three to four times a day, plus snacks. Your baby may start eating finger foods, so chop food into small pieces. Ensure meals are nutritious, including vegetables, fruits, dairy, eggs, and meats, along with fats for energy. Continue breastfeeding to support their nutritional needs.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.unicef.org/parenting/food-nutrition/feeding-your-baby-6-12-months"
             ),
             ],
             ["Baby's First Foods: A Guide for 4-6 Months" : Insights(
@@ -1148,7 +1157,8 @@ class InsightData {
                 dataOne: "Between 4-6 months, babies need more iron than breastmilk alone can provide. Single-grain, iron-fortified cereals are an ideal first food, providing easy-to-digest iron. Mixing the cereal with breast milk, formula, or water helps create a smooth consistency for your baby to swallow comfortably.",
                 subheadingTwo: "How to Serve Cereal",
                 dataTwo: "Start with small spoonfuls, observing how your baby responds to the texture. Iron reserves from birth begin depleting around 6 months, so introducing iron-rich cereals ensures essential nutrition during this critical development period.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.webmd.com/parenting/baby/baby-food-timeline"
             ),
             ],
             ["Fruits and Vegetables for 6-8 Month-Olds" : Insights(
@@ -1160,7 +1170,8 @@ class InsightData {
                 dataOne: "By 6-8 months, babies are ready for pureed fruits and vegetables, such as bananas, pears, carrots, and peas. Washing, cooking, and pureeing these foods with a bit of breast milk, formula, or water creates a consistency that’s easy for your baby to eat.",
                 subheadingTwo: "Adding Flavor and Texture",
                 dataTwo: "Mixing purees with single-grain cereals adds flavor and texture, encouraging variety. Introducing different fruits and veggies lays the groundwork for balanced eating habits and familiarizes babies with various tastes, supporting healthy eating later on.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.webmd.com/parenting/baby/baby-food-timeline"
             ),
             ],
             ["8-10 Months: Exploring Mashed Foods and Finger Foods" : Insights(
@@ -1172,7 +1183,8 @@ class InsightData {
                 dataOne: "By 8-10 months, babies begin to transition from purees to mashed foods with more texture. Foods like mashed sweet potatoes, peas, and chicken offer more substance while remaining easy to eat. As babies gain more control, they may start using their fingers to feed themselves.",
                 subheadingTwo: "Safety and Supervision with Finger Foods",
                 dataTwo: "For finger foods like small pieces of soft fruit, vegetables, and scrambled eggs, make sure to supervise your baby to prevent choking. Cut food into small, manageable pieces, and be mindful of any allergies.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.webmd.com/parenting/baby/baby-food-timeline"
             ),
             ],
             ["10-12 Months: Transitioning to Family Meals" : Insights(
@@ -1184,7 +1196,8 @@ class InsightData {
                 dataOne: "At 10-12 months, your baby can begin eating more family-style meals. Offer mashed, chopped, or soft foods from your plate. Include small portions of foods like pasta, cooked meats, soft fruits, and vegetables. Be mindful of salt and sugar intake at this stage.",
                 subheadingTwo: "Continue Breastfeeding",
                 dataTwo: "Continue breastfeeding or offering formula while transitioning to solid foods. Breastfeeding remains a primary source of nutrition for babies, providing key nutrients and antibodies.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.webmd.com/parenting/baby/baby-food-timeline"
             ),
             ],
             ["Hydration and Baby’s First Drinks" : Insights(
@@ -1196,7 +1209,8 @@ class InsightData {
                 dataOne: "Start offering water around 6 months as part of your baby’s hydration. Give small sips in a sippy cup or bottle alongside meals. Babies can also continue breastfeeding or formula feeding for adequate hydration and nutrition.",
                 subheadingTwo: "Avoid Sugary Drinks",
                 dataTwo: "Avoid offering sugary drinks like juice or soda. These can contribute to tooth decay and lead to unhealthy eating patterns. Water and milk are the best options during this stage.",
-                allergyCategory: []
+                allergyCategory: [],
+                link: "https://www.webmd.com/parenting/baby/baby-food-timeline"
             ),
             ]
         ],
@@ -1210,7 +1224,8 @@ class InsightData {
                 dataOne: "Chamomile tea is known for its calming properties. For babies experiencing mild discomfort or trouble sleeping, diluted chamomile tea may help soothe them and promote better sleep. Use caution and consult a pediatrician before introducing any herbal remedies.",
                 subheadingTwo: "Mild Digestive Relief",
                 dataTwo: "Chamomile tea may also provide mild relief for digestive issues like gas or colic. Always ensure the tea is diluted well and only offer small amounts.",
-                allergyCategory: [.chamomileTea]
+                allergyCategory: [.chamomileTea],
+                link: "https://www.healthline.com/health/baby/chamomile-tea-for-babies"
             ),
             ],
             ["Ginger for Baby’s Digestive Health" : Insights(
@@ -1222,7 +1237,8 @@ class InsightData {
                 dataOne: "Ginger is known for its ability to ease nausea and support digestion. In small amounts, ginger may help alleviate discomfort from indigestion or colic in babies. Always consult a pediatrician before giving your baby any herbal remedy.",
                 subheadingTwo: "Preparation Tips for Babies",
                 dataTwo: "Fresh ginger can be used to make a mild tea, but it should be diluted heavily and given in small doses. Avoid using ginger in excess, as it can be too strong for young babies.",
-                allergyCategory: [.ginger]
+                allergyCategory: [.ginger],
+                link: "https://parenting.firstcry.com/articles/ginger-for-babies-health-benefits-and-safety-measures/"
             ),
             ],
             ["Lavender Oil for Baby’s Skin and Sleep" : Insights(
@@ -1234,7 +1250,8 @@ class InsightData {
                 dataOne: "Lavender oil is often used to calm and relax babies, especially at bedtime. Diluted lavender oil can be gently applied to your baby’s skin to promote relaxation and help with sleep. Be sure to dilute properly and perform a patch test for allergies.",
                 subheadingTwo: "Promoting Skin Health",
                 dataTwo: "Lavender oil can also be used to treat minor skin irritations like rashes or insect bites. Its natural antiseptic properties help heal the skin without causing further irritation.",
-                allergyCategory: [.lavender]
+                allergyCategory: [.lavender],
+                link: "https://www.babyforest.in/blogs/thoughts-and-ideas/lavender-oil-benefits-for-babies?srsltid=AfmBOopvBIo5JFU-KNzQrkLKmjyA_vtSjm-i-xZ_5RO8HLmiXOKB7Iwg"
             ),
             ],
             ["Calendula for Baby’s Skin Care" : Insights(
@@ -1246,7 +1263,8 @@ class InsightData {
                 dataOne: "Calendula is a gentle herb known for its healing properties. It can be used to treat diaper rash and other skin irritations. Apply calendula-infused creams or oils to the affected area to promote healing and soothe your baby’s skin.",
                 subheadingTwo: "Safe and Effective Remedy",
                 dataTwo: "Calendula is safe for babies when used appropriately. Avoid using products that contain alcohol or harsh chemicals, and always opt for gentle, natural remedies to avoid irritating delicate skin.",
-                allergyCategory: [.calendula]
+                allergyCategory: [.calendula],
+                link: "https://www.mommypure.com/blogs/blog/chamomile-calendula-nature-s-blessing-for-your-little-one?srsltid=AfmBOorcRlRCPTn4XOiAp9Ao7WuyKpotJReWV4Hj3nig1E7C2QNfAqT8"
             ),
             ]
         ]
