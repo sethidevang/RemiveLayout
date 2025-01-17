@@ -27,7 +27,7 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             
             section = NSCollectionLayoutSection(group: group)
-                        section.orthogonalScrollingBehavior = .groupPaging
+                section.orthogonalScrollingBehavior = .groupPaging
             return section
         }
     }
@@ -37,16 +37,6 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
         collection.dataSource = self
         collection.collectionViewLayout = createLayout()
         ParentDetail()
-//        let layout = UICollectionViewFlowLayout()
-//                layout.itemSize = CGSize(width: 100, height: 100) // Cell size
-//                layout.minimumLineSpacing = 10
-//                layout.minimumInteritemSpacing = 10
-//                collection.collectionViewLayout = layout
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,8 +68,8 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
                 cell.photo.clipsToBounds = true
                 cell.photo.contentMode = .scaleAspectFill
                 let firstName = cellData.firstName
-                let lastName = cellData.lastName ?? ""
-                cell.name.text = "\(firstName) \(lastName)"
+//                let lastName = cellData.lastName ?? ""
+                cell.name.text = "\(firstName)"
                 cell.kidId = cellData.id
             } else {
                 cell.photo.image = UIImage(systemName: "person.circle")

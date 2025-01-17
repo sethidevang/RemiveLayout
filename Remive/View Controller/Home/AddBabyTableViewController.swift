@@ -8,7 +8,8 @@
 import UIKit
 
 class AddBabyTableViewController: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-
+    @IBOutlet weak var genderButtonOutlet: UIButton!
+    
     @IBOutlet var image: UIImageView!
     @IBOutlet var firstnameTextField: UITextField!
     @IBOutlet var lastnameTextField: UITextField!
@@ -47,13 +48,14 @@ class AddBabyTableViewController: UITableViewController, UIImagePickerController
                 let lastName = lastnameTextField.text, !lastName.isEmpty,
                 let weight = weightTextField.text, !weight.isEmpty,
                 let height = heightTextField.text, !height.isEmpty,
+                let gender = genderButtonOutlet.titleLabel?.text,
                 dob.date <= Date()
         else {
             sender.isEnabled = false
             return
         }
         
-        FamilyManager.shared.addChild(KidDetail(id: 0, photo: image.image, firstName: firstName, lastName: lastName, dob: dob.date, gender: nil, height: Double(height), weight: Double(weight), alTrack: [], histroy: []))
+        FamilyManager.shared.addChild(KidDetail(id: 0, photo: image.image, firstName: firstName, lastName: lastName, dob: dob.date, gender: gender, height: Double(height), weight: Double(weight), alTrack: [], histroy: []))
 
         performSegue(withIdentifier: "unwindToHome", sender: self)
     }
@@ -94,6 +96,24 @@ class AddBabyTableViewController: UITableViewController, UIImagePickerController
         image.contentMode = .scaleAspectFill
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func genderSelectAction(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let male = UIAlertAction(title: "Male", style: .default) { _ in
+            sender.setTitle("Male", for: .normal)
+            }
+            
+        let female = UIAlertAction(title: "Female", style: .default) { _ in
+            sender.setTitle("Female", for: .normal)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(male)
+        alertController.addAction(female)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     
     // MARK: - Table view data source
 
