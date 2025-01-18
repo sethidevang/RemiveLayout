@@ -10,19 +10,21 @@ import UIKit
 class History: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    
-    
-
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var navBar: UINavigationItem!
     
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var dateTimeRecord: UILabel!
+    
+    @IBOutlet weak var rating: UILabel!
     
     @IBOutlet weak var desc: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
-    var data : HistoryRecord?
+
     
+    var data : HistoryRecord?
+//    var recordDateTime : Date?
 //    init?(coder:NSCoder , data: HistoryRecord) {
 //        self.data = data
 //        super.init(coder: coder)
@@ -34,12 +36,16 @@ class History: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(data)
+//        print(data)
         tableView.delegate = self
         tableView.dataSource = self
-//        navBar.title = data?.condition
-        name.text = data?.selectedRemedy.title
+        navBar.title = data?.condition
+        name.text = "Remedy Suggested: \(data?.selectedRemedy.title ?? "null")"
         desc.text = data?.selectedRemedy.shortDescription
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY,MMM dd h:mm a"  //
+        dateTimeRecord.text = formatter.string(from: data?.date ?? Date())
+//        rating.text = 
         // Do any additional setup after loading the view.
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,5 +66,8 @@ class History: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    @IBAction func shareButtonAction(_ sender: UIBarButtonItem) {
+        UIApplication.shared.open(URL(string: data?.selectedRemedy.link ?? "")!)
+    }
 }
 

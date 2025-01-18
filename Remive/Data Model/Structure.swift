@@ -24,7 +24,6 @@ struct ParentDetail {
     var phoneNumber: Int
     var email: String
     var address: String?
-    
     var kids: [KidDetail]
 }
 
@@ -43,9 +42,8 @@ struct KidDetail {
     var gender: String?
     var height: Double?
     var weight: Double?
-    var alTrack: [AllergyCategory] = [] //allergy track
+    var alTrack: [AllergyCategory] = []
     var history: [HistoryRecord] = []
-
     var age: Int {
         let calendar = Calendar.current
         let today = Date()
@@ -85,26 +83,26 @@ class FamilyManager {
                     alTrack: [.aloeVera],
                     history: [
                         HistoryRecord(condition: "Cold", selectedRemedy:
-                            Remedy(
-                                title: "Lemon for Fever",
-                                shortDescription: "Lemon has cooling properties helps to boost immune system helps to keep body hydrated",
-                                steps: ["Soak a clean cloth in cool water and add a few drops of fresh lemon juice.", "Gently place it on baby’s forehead.", "Apply for 10–15 minutes."],
-                                images: ["lemon", "lemon", "lemon"],
-                                link: "https://www.webmd.com/parenting/baby/features/natural-remedies"
-                            ), date: Calendar.current.date(from: DateComponents(year: 2024, month: 12, day: 18))!
+                        Remedy(
+                            title: "Lemon",
+                            shortDescription: "Lemon has cooling properties helps to boost immune system helps to keep body hydrated",
+                            steps: ["Soak a clean cloth in cool water and add a few drops of fresh lemon juice.", "Gently place it on baby’s forehead.", "Apply for 10–15 minutes."],
+                            images: ["2.2.1", "2.2.2","2.2.3"],
+                            link: "https://www.webmd.com/parenting/baby/features/natural-remedies"
+                        ), date: Calendar.current.date(from: DateComponents(year: 2024, month: 12, day: 18))!
                         ),
                         HistoryRecord(condition: "Colic", selectedRemedy:
-                            Remedy(
-                                title: "Warm Baths",
-                                shortDescription: "A warm bath helps soothe the baby and provides relief from colic.",
-                                steps: ["Fill the bathtub with warm water (ensure it's not too hot)." ,
-                                        "Gently place the baby in the water." ,
-                                        "Let the baby relax in the warm water for 10-15 minutes." ,
-                                        "Dry the baby gently with a soft towel after the bath."
-                                       ],
-                                images: ["warm_bath"],
-                                link: "https://www.healthline.com/health/baby/baby-bath-temperature#ideal-temperature"
-                            ), date: Calendar.current.date(from: DateComponents(year: 2024, month: 12, day: 15))!
+                        Remedy(
+                            title: "Warm Baths",
+                            shortDescription: "A warm bath helps soothe the baby and provides relief from colic.",
+                            steps: ["Fill the bathtub with warm water (ensure it's not too hot)." ,
+                                    "Gently place the baby in the water." ,
+                                    "Let the baby relax in the warm water for 10-15 minutes." ,
+                                    "Dry the baby gently with a soft towel after the bath."
+                                   ],
+                            images: ["8.1.1","8.1.2","8.1.3","8.1.4"],
+                            link: "https://www.healthline.com/health/baby/baby-bath-temperature#ideal-temperature"
+                        ), date: Calendar.current.date(from: DateComponents(year: 2024, month: 12, day: 15))!
                         ),
                     ]
                 ),
@@ -120,18 +118,18 @@ class FamilyManager {
                     weight: 15.0,
                     alTrack: [.bakingSoda],
                     history: [
-                        HistoryRecord(condition: "Colic", selectedRemedy:
-                        Remedy(
-                            title: "Warm Baths",
-                            shortDescription: "A warm bath helps soothe the baby and provides relief from colic.",
-                            steps: ["Fill the bathtub with warm water (ensure it's not too hot)." ,
-                                    "Gently place the baby in the water." ,
-                                    "Let the baby relax in the warm water for 10-15 minutes." ,
-                                    "Dry the baby gently with a soft towel after the bath."
-                                   ],
-                            images: ["warm_bath"],
-                            link: "https://www.healthline.com/health/baby/baby-bath-temperature#ideal-temperature"
-                        ), date: Date())
+                    HistoryRecord(condition: "Colic", selectedRemedy:
+                    Remedy(
+                        title: "Warm Baths",
+                        shortDescription: "A warm bath helps soothe the baby and provides relief from colic.",
+                        steps: ["Fill the bathtub with warm water (ensure it's not too hot)." ,
+                                "Gently place the baby in the water." ,
+                                "Let the baby relax in the warm water for 10-15 minutes." ,
+                                "Dry the baby gently with a soft towel after the bath."
+                               ],
+                        images: ["8.1.1","8.1.2","8.1.3","8.1.4"],
+                        link: "https://www.healthline.com/health/baby/baby-bath-temperature#ideal-temperature"
+                    ), date: Date())
                     ]
                 )
             ]

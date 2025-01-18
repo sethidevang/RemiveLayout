@@ -197,13 +197,14 @@ class BabyAboutCollectionViewController: UICollectionViewController {
     }
     // Add this property to store the selected history record
     var selectedHistoryRecord: HistoryRecord?
-
+//    var selectedTimeDate : Date?
     // Detect cell selection
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 3 {
             if let record = FamilyManager.shared.getChildDetails(byID: selectedChildID)?.history[indexPath.item] {
                 selectedHistoryRecord = record
-                print(selectedHistoryRecord)
+//                selectedTimeDate = record.
+//                print(selectedHistoryRecord)
                 performSegue(withIdentifier: "babyHistorySegue", sender: self)
             }
         }
@@ -232,6 +233,7 @@ class BabyAboutCollectionViewController: UICollectionViewController {
         if segue.identifier == "babyHistorySegue"{
             let destinationVC = segue.destination as? History
             destinationVC?.data = selectedHistoryRecord
+//            destinationVC?.recordDateTime =
         }
 //           let destinationVC = segue.destination as? History,
 //        destinationVC.data = selectedHistoryRecord
