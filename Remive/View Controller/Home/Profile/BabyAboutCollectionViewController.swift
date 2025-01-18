@@ -45,7 +45,7 @@ class BabyAboutCollectionViewController: UICollectionViewController {
         if section == 1 { return 3 }
         if section == 2 { return 1 }
         if section == 3 {
-            if let count = FamilyManager.shared.getChildDetails(byID: selectedChildID)?.histroy.count {
+            if let count = FamilyManager.shared.getChildDetails(byID: selectedChildID)?.history.count {
                 if count > 4 {
                     return 4
                 } else {
@@ -102,11 +102,10 @@ class BabyAboutCollectionViewController: UICollectionViewController {
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "search", for: indexPath) as! SearchCollectionViewCell
             
-            let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)?.histroy[indexPath.item]
+            let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)?.history[indexPath.item]
             cell.name.text = cellData?.condition
             cell.remedy.text = "Remedy Suggested : \(cellData?.selectedRemedy.title ?? "")"
             if let date = cellData?.date {
-                // Calculate the difference in days from the current date
                 let calendar = Calendar.current
                 let currentDate = Date()
                 
@@ -187,17 +186,33 @@ class BabyAboutCollectionViewController: UICollectionViewController {
         
         let heading = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headingReuseIdentifier, for: indexPath)
         heading.subviews.forEach {$0.removeFromSuperview()}
-//        heading.backgroundColor = .black
         let label = UILabel(frame: heading.bounds)
        
         label.text = "History"
         
         label.textAlignment = .left
-//        label.textColor = .systemPink
         label.font = .boldSystemFont(ofSize: 20)
         heading.addSubview(label)
         return heading
     }
+    // Add this property to store the selected history record
+    var selectedHistoryRecord: HistoryRecord?
+
+    // Detect cell selection
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 3 {
+            if let record = FamilyManager.shared.getChildDetails(byID: selectedChildID)?.history[indexPath.item] {
+                selectedHistoryRecord = record
+                print(selectedHistoryRecord)
+                performSegue(withIdentifier: "babyHistorySegue", sender: self)
+            }
+        }
+    }
+
+
+    // Update the IBAction to pass the selectedHistoryRecord
+   
+
     
     @IBAction func unwindToBabyAbout(_ unwindSegue: UIStoryboardSegue) {
     }
@@ -213,5 +228,21 @@ class BabyAboutCollectionViewController: UICollectionViewController {
     @IBSegueAction func babyAboutToAlTrack(_ coder: NSCoder) -> AlTrackTableViewController? {
         return AlTrackTableViewController(coder: coder, selectedChildId: selectedChildID)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "babyHistorySegue"{
+            let destinationVC = segue.destination as? History
+            destinationVC?.data = selectedHistoryRecord
+        }
+//           let destinationVC = segue.destination as? History,
+//        destinationVC.data = selectedHistoryRecord
+//           let historyRecord = selectedHistoryRecord {
+//            destinationVC.data = historyRecord
+//        }
+    }
+//    @IBSegueAction func babyHistory(_ coder: NSCoder, sender: Any?) -> History? {
+//        print(selectedHistoryRecord!)
+//        guard let historyRecord = selectedHistoryRecord else { return History(coder: coder) }
+//           return History(coder: coder, data: historyRecord)
+//    }
     
 }

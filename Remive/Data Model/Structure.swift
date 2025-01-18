@@ -44,7 +44,7 @@ struct KidDetail {
     var height: Double?
     var weight: Double?
     var alTrack: [AllergyCategory] = [] //allergy track
-    var histroy: [HistoryRecord] = []
+    var history: [HistoryRecord] = []
 
     var age: Int {
         let calendar = Calendar.current
@@ -83,13 +83,13 @@ class FamilyManager {
                     height: 120.0,
                     weight: 25.5,
                     alTrack: [.aloeVera],
-                    histroy: [
+                    history: [
                         HistoryRecord(condition: "Cold", selectedRemedy:
                             Remedy(
                                 title: "Lemon for Fever",
                                 shortDescription: "Lemon has cooling properties helps to boost immune system helps to keep body hydrated",
                                 steps: ["Soak a clean cloth in cool water and add a few drops of fresh lemon juice.", "Gently place it on baby’s forehead.", "Apply for 10–15 minutes."],
-                                images: ["lemon"],
+                                images: ["lemon", "lemon", "lemon"],
                                 link: "https://www.webmd.com/parenting/baby/features/natural-remedies"
                             ), date: Calendar.current.date(from: DateComponents(year: 2024, month: 12, day: 18))!
                         ),
@@ -119,7 +119,7 @@ class FamilyManager {
                     height: 95.0,
                     weight: 15.0,
                     alTrack: [.bakingSoda],
-                    histroy: [
+                    history: [
                         HistoryRecord(condition: "Colic", selectedRemedy:
                         Remedy(
                             title: "Warm Baths",
@@ -263,7 +263,7 @@ class FamilyManager {
     func addChildSearchHistory(toChildID id: Int, condition: String, remedy: Remedy) {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
 //            parentDetail.kids[index].histroy.append(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()))
-            parentDetail.kids[index].histroy.insert(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()), at: 0)
+            parentDetail.kids[index].history.insert(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()), at: 0)
         }
     }
     
@@ -271,11 +271,11 @@ class FamilyManager {
     func removeChildSearchHistory(toChildID id: Int, condition: String, remedy: Remedy) {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
             // Find the index of the last matching HistoryRecord
-            if let recordIndex = parentDetail.kids[index].histroy.lastIndex(where: {
+            if let recordIndex = parentDetail.kids[index].history.lastIndex(where: {
                 $0.condition == condition && $0.selectedRemedy.title == remedy.title
             }) {
                 // Remove the last matching record
-                parentDetail.kids[index].histroy.remove(at: recordIndex)
+                parentDetail.kids[index].history.remove(at: recordIndex)
             }
         }
     }
@@ -283,10 +283,10 @@ class FamilyManager {
     // For toggling like or dislike of a particular child history rating
     func toggleRating(ofChildId id: Int, condition: String, remedy: Remedy) {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
-            if let recordIndex = parentDetail.kids[index].histroy.lastIndex(where: {
+            if let recordIndex = parentDetail.kids[index].history.lastIndex(where: {
                 $0.condition == condition && $0.selectedRemedy.title == remedy.title
             }) {
-                parentDetail.kids[index].histroy[recordIndex].rating.toggle()
+                parentDetail.kids[index].history[recordIndex].rating.toggle()
             }
         }
     }

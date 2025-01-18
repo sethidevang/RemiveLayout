@@ -55,7 +55,7 @@ class AddBabyTableViewController: UITableViewController, UIImagePickerController
             return
         }
         
-        FamilyManager.shared.addChild(KidDetail(id: 0, photo: image.image, firstName: firstName, lastName: lastName, dob: dob.date, gender: gender, height: Double(height), weight: Double(weight), alTrack: [], histroy: []))
+        FamilyManager.shared.addChild(KidDetail(id: 0, photo: image.image, firstName: firstName, lastName: lastName, dob: dob.date, gender: gender, height: Double(height), weight: Double(weight), alTrack: [], history: []))
 
         performSegue(withIdentifier: "unwindToHome", sender: self)
     }

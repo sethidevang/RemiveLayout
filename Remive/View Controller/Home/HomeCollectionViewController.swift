@@ -108,7 +108,7 @@ class HomeCollectionViewController: UICollectionViewController {
         case 1:
             return 1
         case 2:
-            if let count = FamilyManager.shared.getChildDetails(byIndex: selectedChildIndex)?.histroy.count {
+            if let count = FamilyManager.shared.getChildDetails(byIndex: selectedChildIndex)?.history.count {
                 if count > 4 {
                     return 4
                 } else {
@@ -179,7 +179,7 @@ class HomeCollectionViewController: UICollectionViewController {
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "search", for: indexPath) as! SearchCollectionViewCell
         
-            let cellData = FamilyManager.shared.getChildDetails(byIndex: selectedChildIndex)?.histroy[indexPath.item]
+            let cellData = FamilyManager.shared.getChildDetails(byIndex: selectedChildIndex)?.history[indexPath.item]
             cell.name.text = cellData?.condition
             cell.remedy.text = ("Remedy Suggested : \(cellData?.selectedRemedy.title ?? "")")
             if let date = cellData?.date {
@@ -245,11 +245,12 @@ class HomeCollectionViewController: UICollectionViewController {
                 selectedChildIndexPath = indexPath
                 selectedChildId = FamilyManager.shared.getChildDetails(byIndex: indexPath.item)!.id
             }
-            
             collectionView.reloadSections(IndexSet(integer: 2))
-        } else {
+        }
+        else if indexPath.section==0 && indexPath.item >= FamilyManager.shared.getChildCount() {
             performSegue(withIdentifier: "homeToAddBaby", sender: self)
         }
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
