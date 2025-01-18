@@ -27,10 +27,7 @@ struct ParentDetail {
     var kids: [KidDetail]
 }
 
-//allergy
-//struct AlTrack {
-//    var allergy: AllergyCategory
-//}
+
 
 //kid profile
 struct KidDetail {

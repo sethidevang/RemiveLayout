@@ -216,6 +216,7 @@ class BabyAboutCollectionViewController: UICollectionViewController {
 
     
     @IBAction func unwindToBabyAbout(_ unwindSegue: UIStoryboardSegue) {
+        collectionView.reloadData()
     }
     
     @IBAction func unwindToEditedBabyAbout(_ unwindSegue: UIStoryboardSegue) {

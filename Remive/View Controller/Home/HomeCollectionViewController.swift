@@ -263,7 +263,6 @@ class HomeCollectionViewController: UICollectionViewController {
         
         let heading = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headingReuseIdentifier, for: indexPath)
         heading.subviews.forEach {$0.removeFromSuperview()}
-//        heading.backgroundColor = .black
         let label = UILabel(frame: heading.bounds)
         switch indexPath.section {
         case 0:
@@ -278,7 +277,6 @@ class HomeCollectionViewController: UICollectionViewController {
             label.text = "none"
         }
         label.textAlignment = .left
-//        label.textColor = .systemPink
         label.font = .boldSystemFont(ofSize: 20)
         heading.addSubview(label)
         return heading
@@ -301,6 +299,7 @@ class HomeCollectionViewController: UICollectionViewController {
     @IBSegueAction func homeToCureAsk(_ coder: NSCoder) -> CureAskTableViewController? {
         return CureAskTableViewController(coder: coder, id: selectedChildId)
     }
+
     
     @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
         collectionView.reloadData()
@@ -310,17 +309,23 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func thumbsUp(_ sender: UIButton) {
+//        let indexPath = IndexPath(item: <#T##Int#>, section: <#T##Int#>)
+//        if let data = FamilyManager.shared.getChildDetails(byID: selectedChildId)?.history
+//        if let record = FamilyManager.shared.getChildDetails(byID: selectedChildId)?.history[indexPath.item] {
+//            selectedHistoryRecord = record
+//            performSegue(withIdentifier: "homeToHistory", sender: self)
+        
         if sender.currentImage == UIImage(systemName: "hand.thumbsup.fill") {
             sender.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
         } else {
             sender.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeToHistory"{
             let destinationVC = segue.destination as? History
             destinationVC?.data = selectedHistoryRecord
-            //            destinationVC?.recordDateTime =
         }
     }
     

@@ -24,16 +24,6 @@ class History: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     var data : HistoryRecord?
-//    var recordDateTime : Date?
-//    init?(coder:NSCoder , data: HistoryRecord) {
-//        self.data = data
-//        super.init(coder: coder)
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(data)
@@ -43,7 +33,7 @@ class History: UIViewController, UITableViewDelegate, UITableViewDataSource {
         name.text = "Remedy Suggested: \(data?.selectedRemedy.title ?? "null")"
         desc.text = data?.selectedRemedy.shortDescription
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY,MMM dd h:mm a"  //
+        formatter.dateFormat = "YYYY,MMM dd  h:mm a" 
         dateTimeRecord.text = formatter.string(from: data?.date ?? Date())
 //        rating.text = 
         // Do any additional setup after loading the view.
@@ -65,9 +55,16 @@ class History: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.tablePhoto.layer.cornerRadius =  10
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     @IBAction func shareButtonAction(_ sender: UIBarButtonItem) {
         UIApplication.shared.open(URL(string: data?.selectedRemedy.link ?? "")!)
     }
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        print("hello")
+    }
+    
 }
 

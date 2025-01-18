@@ -27,13 +27,13 @@ class AddBabyTableViewController: UITableViewController, UIImagePickerController
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
+    
+    
     @IBAction func textFieldValueChanged(_ sender: UITextField) {
         guard
-                let firstName = firstnameTextField.text, !firstName.isEmpty,
-                let lastName = lastnameTextField.text, !lastName.isEmpty,
-                let weight = weightTextField.text, !weight.isEmpty,
-                let height = heightTextField.text, !height.isEmpty,
-                dob.date <= Date()
+            let firstName = firstnameTextField.text, !firstName.isEmpty,
+            dob.date <= Date()
         else {
             saveButton.isEnabled = false
             return
@@ -42,18 +42,23 @@ class AddBabyTableViewController: UITableViewController, UIImagePickerController
         saveButton.isEnabled = true
     }
     
+    
+    
+    
+    
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+       
         guard
-                let firstName = firstnameTextField.text, !firstName.isEmpty,
-                let lastName = lastnameTextField.text, !lastName.isEmpty,
-                let weight = weightTextField.text, !weight.isEmpty,
-                let height = heightTextField.text, !height.isEmpty,
-                let gender = genderButtonOutlet.titleLabel?.text,
-                dob.date <= Date()
+            let firstName = firstnameTextField.text, !firstName.isEmpty,
+            let gender = genderButtonOutlet.titleLabel?.text,
+            dob.date <= Date()
         else {
-            sender.isEnabled = false
+            sender.isEnabled = true
             return
         }
+        let lastName = lastnameTextField.text ?? ""
+        let weight = weightTextField.text ?? ""
+        let height = heightTextField.text ?? ""
         
         FamilyManager.shared.addChild(KidDetail(id: 0, photo: image.image, firstName: firstName, lastName: lastName, dob: dob.date, gender: gender, height: Double(height), weight: Double(weight), alTrack: [], history: []))
 
