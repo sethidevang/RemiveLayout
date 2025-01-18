@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gmb-op-jWM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rpt-e7-7ek">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -18,7 +18,7 @@
             <objects>
                 <collectionViewController id="xTH-6H-PSs" customClass="HomeCollectionViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="0em-kU-wP2">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eBM-r0-OlP">
@@ -235,11 +235,12 @@
                     </navigationItem>
                     <connections>
                         <segue destination="chG-ME-ney" kind="presentation" identifier="homeToAddBaby" id="wEo-05-Uam"/>
+                        <segue destination="5db-Cq-XVJ" kind="presentation" identifier="homeToHistory" id="ldI-5K-cIb"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9f1-Mo-nbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6706" y="-182"/>
+            <point key="canvasLocation" x="6804" y="-145"/>
         </scene>
         <!--AL-TRACK-->
         <scene sceneID="1va-jJ-hKN">
@@ -922,7 +923,7 @@
             <objects>
                 <tableViewController id="r5S-IX-zTq" customClass="ProfileTableViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="LUP-bv-N23">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="gOb-2D-oLM">
@@ -1121,7 +1122,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="VBw-f7-zIu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4DB-Ef-pbz">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1138,7 +1139,7 @@
             <objects>
                 <tableViewController id="qTa-Sz-Voy" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="PXx-Tm-Gz6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="YnM-5G-qle">
@@ -1238,7 +1239,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="FKp-S9-YgS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="JkR-5D-CeV">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1294,7 +1295,7 @@
             <objects>
                 <collectionViewController id="fB3-xM-j5a" customClass="BabyAboutCollectionViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HSk-Ma-jHU">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3k9-dP-obC">
@@ -1357,13 +1358,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="TcY-sT-M2I">
                                             <rect key="frame" x="28.666666666666671" y="33" width="71" height="62.333333333333343"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2c-Ys-IgG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2c-Ys-IgG">
                                                     <rect key="frame" x="0.0" y="0.0" width="71" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhX-X2-VDg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhX-X2-VDg">
                                                     <rect key="frame" x="0.0" y="48" width="71" height="14.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1520,7 +1521,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ShI-Q3-WKE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="euS-Jb-6yq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1537,11 +1538,11 @@
             <objects>
                 <viewController id="3gI-O4-29r" customClass="ViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QJN-l5-m4U">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsUserLocation="YES" showsUserTrackingButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xQD-RC-Uda">
-                                <rect key="frame" x="0.0" y="108" width="393" height="695"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                                 <connections>
                                     <outlet property="delegate" destination="3gI-O4-29r" id="PH7-ra-WdL"/>
@@ -1649,7 +1650,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aSa-Ud-XVS">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1666,7 +1667,7 @@
             <objects>
                 <tableViewController id="tah-0A-7Po" customClass="CureAskTableViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" id="j1c-zh-Yhq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -2026,7 +2027,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2AL-ps-eoV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="uvb-lH-K4B" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="8464.8854961832058" y="-1088.0281690140846"/>
+            <point key="canvasLocation" x="9391.6030534351139" y="-1088.0281690140846"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ilc-m9-u1x">
@@ -2035,7 +2036,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ObE-7e-Oxu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8pE-wa-P1V">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2045,14 +2046,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFg-EG-LoK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7747" y="-1083"/>
+            <point key="canvasLocation" x="8672.519083969466" y="-1083.0985915492959"/>
         </scene>
         <!--Cure Tip-->
         <scene sceneID="dnJ-MG-mH3">
             <objects>
                 <viewController id="sJn-Wq-fbw" customClass="CureTipViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MDj-Nr-pp6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRz-11-Ugs" customClass="CureTip" customModule="Remive" customModuleProvider="target">
@@ -2200,7 +2201,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WEV-H0-fkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="mdR-be-ixH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="9953" y="-1088"/>
+            <point key="canvasLocation" x="10878.625954198473" y="-1088.0281690140846"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8lr-mr-Lzn">
@@ -2209,7 +2210,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="f8k-Ml-rSA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fir-mI-sWz">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2219,7 +2220,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oG-ky-tlU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9195" y="-1083"/>
+            <point key="canvasLocation" x="10121.374045801525" y="-1083.0985915492959"/>
         </scene>
         <!--Heading1-->
         <scene sceneID="QPc-ff-eEg">
@@ -2494,7 +2495,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vet-sb-qxC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="O02-ts-2to">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2511,7 +2512,7 @@
             <objects>
                 <collectionViewController id="QMn-Vw-DFd" customClass="InsightsCollectionViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dgH-HK-D3D">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qd7-u0-lct">
@@ -2643,7 +2644,7 @@
             <objects>
                 <tableViewController id="G1t-kg-wkB" customClass="SavedInsightTableViewController" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="10" estimatedSectionFooterHeight="-1" id="9mX-Av-OYI">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="savedInsightCell" rowHeight="130" id="3zS-nT-phR" customClass="SavedInsightTableViewCell" customModule="Remive" customModuleProvider="target">
@@ -3019,7 +3020,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="B2t-P5-Kjr">
-                                <rect key="frame" x="36" y="241" width="347" height="135"/>
+                                <rect key="frame" x="36" y="285" width="347" height="135"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REMIVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiS-k0-aJP">
                                         <rect key="frame" x="0.0" y="0.0" width="347" height="65.666666666666671"/>
@@ -3080,7 +3081,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcy-q8-HxU">
-                                <rect key="frame" x="233" y="59" width="150" height="35"/>
+                                <rect key="frame" x="227" y="69" width="150" height="107"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="0.039215686270000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
@@ -3108,6 +3109,7 @@
                             <constraint firstItem="B2t-P5-Kjr" firstAttribute="leading" secondItem="Q6h-7a-fpr" secondAttribute="leading" constant="36" id="yMS-dd-IFV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nMn-DS-2BC"/>
                     <connections>
                         <outlet property="appleButtonOutlet" destination="KYN-np-SEn" id="vMl-S0-J73"/>
                         <outlet property="googleButtonOutlet" destination="FzL-B6-CSm" id="Xju-ao-4Np"/>
@@ -3116,7 +3118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icf-mV-i8r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6361" y="-1083"/>
+            <point key="canvasLocation" x="7286.2595419847321" y="-1083.0985915492959"/>
         </scene>
         <!--Heading1-->
         <scene sceneID="gf9-yr-wVW">
@@ -3694,7 +3696,7 @@
         <!--Name-->
         <scene sceneID="jCe-Yp-gKt">
             <objects>
-                <viewController id="5db-Cq-XVJ" customClass="History" customModule="History" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5db-Cq-XVJ" customClass="History" customModule="Remive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fzN-5T-aco">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3840,7 +3842,29 @@
             </objects>
             <point key="canvasLocation" x="7730.5343511450383" y="-1864.0845070422536"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cC0-oX-B3W">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rpt-e7-7ek" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="BXE-7l-X1C">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="compactScrollEdgeAppearance"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qqh-I8-gYn" kind="relationship" relationship="rootViewController" id="zQg-01-go3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xj6-kj-fL2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6359.5419847328239" y="-1083.0985915492959"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ldI-5K-cIb"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="BabyDiet5" width="640" height="640"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>

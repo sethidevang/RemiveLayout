@@ -203,12 +203,10 @@ class HomeCollectionViewController: UICollectionViewController {
                 }
             }
             cell.layer.borderWidth = 1
-
             if traitCollection.userInterfaceStyle == .dark {
                 cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)  // White border for Dark Mode
             }
             cell.layer.cornerRadius = 14
-         
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "insight", for: indexPath) as! InsightCollectionViewCell
@@ -232,6 +230,8 @@ class HomeCollectionViewController: UICollectionViewController {
         }
     }
     
+    var selectedHistoryRecord: HistoryRecord?
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.item < FamilyManager.shared.getChildCount() {
             if let cell = collectionView.cellForItem(at: selectedChildIndexPath) as? BabyCardCollectionViewCell {
@@ -249,6 +249,12 @@ class HomeCollectionViewController: UICollectionViewController {
         }
         else if indexPath.section==0 && indexPath.item >= FamilyManager.shared.getChildCount() {
             performSegue(withIdentifier: "homeToAddBaby", sender: self)
+        }
+        else if indexPath.section == 2{
+            if let record = FamilyManager.shared.getChildDetails(byID: selectedChildId)?.history[indexPath.item] {
+                selectedHistoryRecord = record
+                performSegue(withIdentifier: "homeToHistory", sender: self)
+            }
         }
         
     }
@@ -308,6 +314,13 @@ class HomeCollectionViewController: UICollectionViewController {
             sender.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
         } else {
             sender.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeToHistory"{
+            let destinationVC = segue.destination as? History
+            destinationVC?.data = selectedHistoryRecord
+            //            destinationVC?.recordDateTime =
         }
     }
     
