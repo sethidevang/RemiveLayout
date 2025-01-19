@@ -16,7 +16,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
     @IBOutlet weak var kidNameLabel: UILabel!
     
     // List of symptoms
-    private var selectedSymptoms: Set<String> = []   // Selected symptoms
+    private var selectedSymptoms: Set<String> = []
     private var selectedRemedies: [Remedy] = []
     private var selectedIngredient: Remedy?
     private var finalSymptom: String = ""
@@ -39,14 +39,14 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
         collectionView.dataSource = self
         collectionViewRemedyCell.collectionViewLayout=createLayout()
         collectionViewRemedyCell.dataSource = self
-//        resetButtonSelections()
+
         submitButtonOutlet.layer.cornerRadius = 30
         submitButtonOutlet.isEnabled = false
         
         if let kid = FamilyManager.shared.getChildDetails(byID: selectedChildId) {
             kidNameLabel.text = "\(kid.firstName) \(kid.lastName ?? "")"
         }
-//        symptomButt
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -76,7 +76,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
             cell.symptomButton.layer.masksToBounds = true
             cell.symptomButton.layer.borderColor = CGColor(red: 0.961, green: 0.039, blue: 0.329, alpha: 1.0)
             
-//            cell.symptomButto
+
             
             return cell
         } else if collectionView == self.collectionViewRemedyCell {

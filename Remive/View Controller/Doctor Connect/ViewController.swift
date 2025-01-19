@@ -28,7 +28,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PediatricianS
         let region = MKCoordinateRegion(center: pediatrician.location, span: span)
         mapView.setRegion(region, animated: true)
         
-        // Optionally, select the corresponding annotation
+       
         for annotation in mapView.annotations {
             if annotation.coordinate.latitude == pediatrician.location.latitude &&
                 annotation.coordinate.longitude == pediatrician.location.longitude {
@@ -84,9 +84,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PediatricianS
         }
     }
     
-    // Present the pediatricians list in a half sheet
+   
     func presentPediatriciansHalfSheet() {
-        // Instantiate the PediatriciansListTableViewController from storyboard
+      
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let pediatriciansVC = storyboard.instantiateViewController(withIdentifier: "PediatriciansListTableViewController") as? PediatriciansListTableViewController {
             
