@@ -86,12 +86,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PediatricianS
     
    
     func presentPediatriciansHalfSheet() {
-      
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let pediatriciansVC = storyboard.instantiateViewController(withIdentifier: "PediatriciansListTableViewController") as? PediatriciansListTableViewController {
             
             // Pass the pediatricians data to the new view controller
             pediatriciansVC.pediatricianResults = self.pediatricianResults
+            print(pediatriciansVC.pediatricianResults)
             
             // Embed the table view controller in a navigation controller
             let nav = UINavigationController(rootViewController: pediatriciansVC)
@@ -128,7 +128,7 @@ extension UISheetPresentationController.Detent.Identifier {
 
 extension ViewController {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
             locationManager.requestLocation()
         }
     }
@@ -187,9 +187,15 @@ extension ViewController: HandleMapSearch {
                 let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
                 let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
-                
-                // Present the pediatricians list on the half sheet
-                self.presentPediatriciansHalfSheet()
+
+                // Present the pediatricians list on the half-sheet
+                if let presentedVC = self.presentedViewController as? UINavigationController,
+                   let pediatriciansVC = presentedVC.viewControllers.first as? PediatriciansListTableViewController {
+                    pediatriciansVC.pediatricianResults = self.pediatricianResults
+                    pediatriciansVC.tableView.reloadData()
+                } else {
+                    self.presentPediatriciansHalfSheet()
+                }
             }
         }
     }
@@ -211,7 +217,7 @@ extension ViewController: HandleMapSearch {
                 Pediatrician(
                     name: mapItem.name ?? "Unknown",
                     location: mapItem.placemark.coordinate,
-                    specialty: mapItem.phoneNumber ?? "Pediatrician"
+                    specialty: mapItem.phoneNumber ?? "No Phone Number found"
                 )
             }
             completion(pediatricians)

@@ -964,7 +964,7 @@ class RemedySuggestionsModel {
         return Array(cureTips.conditions.keys)
     }
 //    to append all the remedies to the array
-    func selectSymptom(_ symptom: String) -> [String] {
+    func selectSymptom(_ symptom: String, selectedChildId: Int) -> [String] {
 //        guard let remedies = cureTips.conditions[symptom] else { return suggestedIngredients }
 //
 //        var newSuggestedIngredients: [String] = []
@@ -986,11 +986,14 @@ class RemedySuggestionsModel {
 //        return newSuggestedIngredients
         
         var ans: [String] = []
+        let altrack = FamilyManager.shared.getAllergies(ofChildID: selectedChildId)
         
         if let remedies = cureTips.conditions[symptom] {
             for remedy in remedies {
-                ans.append(remedy.title)
-                suggestedRemedies.append(remedy)
+                if !altrack.contains(where: { $0.rawValue == remedy.title || remedy.title.contains($0.rawValue) }) {
+                    ans.append(remedy.title)
+                    suggestedRemedies.append(remedy)
+                }
             }
         }
         return ans

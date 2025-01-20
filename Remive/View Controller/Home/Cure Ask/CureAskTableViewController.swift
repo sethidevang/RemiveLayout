@@ -98,7 +98,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
     
     func updateRemedies() {
         for symptom in selectedSymptoms {
-            let remedies = RemedySuggestionsModel.shared.selectSymptom(symptom)
+            let remedies = RemedySuggestionsModel.shared.selectSymptom(symptom, selectedChildId: selectedChildId)
         }
         print("Selected Symptoms: \(selectedSymptoms)")
         print("Remedies: \(selectedRemedies)")
@@ -143,7 +143,7 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
         lastSelectedButton = sender
         // Store the current button as the last selected button
         RemedySuggestionsModel.shared.clearContent()
-        RemedySuggestionsModel.shared.selectSymptom((sender.titleLabel?.text)!)
+        RemedySuggestionsModel.shared.selectSymptom((sender.titleLabel?.text)!, selectedChildId: selectedChildId)
         finalSymptom = (sender.titleLabel?.text)!
         selectedRemedies.removeAll()
         selectedRemedies.append(contentsOf: RemedySuggestionsModel.shared.getRemedies())

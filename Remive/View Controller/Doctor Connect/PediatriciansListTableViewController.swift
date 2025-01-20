@@ -25,19 +25,24 @@ class PediatriciansListTableViewController: UITableViewController, DismissPediat
         super.viewDidLoad()
 
         // Register a default cell for the table view
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PediatricianCell")
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PediatricianCell")
         navigationItem.title = "Nearby Pediatricians"
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(pediatricianResults)
         return pediatricianResults.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PediatricianCell", for: indexPath)
         let pediatrician = pediatricianResults[indexPath.row]
-        cell.textLabel?.text = pediatrician.name
-        cell.detailTextLabel?.text = pediatrician.specialty
+        
+        var defaultCell = cell.defaultContentConfiguration()
+        defaultCell.text = pediatrician.name
+        defaultCell.secondaryText = "Phone Number:\(pediatrician.specialty)"
+        cell.contentConfiguration = defaultCell
+        
         return cell
     }
     
