@@ -8,17 +8,11 @@
 import Foundation
 import UIKit
 
-// MARK: - Search data model
-
-
-
-
-
 // MARK: - Parent detail data model
 
 //user account details
-struct ParentDetail {
-    var image: UIImage?
+struct ParentDetail: Codable {
+    var image: Data?
     var firstName: String
     var lastName: String?
     var phoneNumber: Int
@@ -27,12 +21,10 @@ struct ParentDetail {
     var kids: [KidDetail]
 }
 
-
-
 //kid profile
-struct KidDetail {
+struct KidDetail: Codable {
     var id: Int
-    var photo: UIImage?
+    var photo: Data?
     var firstName: String
     var lastName: String?
     var dob: Date
@@ -51,17 +43,23 @@ struct KidDetail {
     }
 }
 //history record
-struct HistoryRecord {
+struct HistoryRecord: Codable {
     let condition: String
     let selectedRemedy: Remedy
     let date: Date
     var rating : Bool = false
 }
-
+func convertImageToData(image: UIImage?) -> Data? {
+    return image?.jpegData(compressionQuality: 1.0)
+}
+func convertDataToImage(data: Data?) -> UIImage? {
+    guard let data = data else { return nil }
+    return UIImage(data: data)
+}
 // user class
 class FamilyManager {
     private var parentDetail = ParentDetail(
-                image: UIImage(named: "Parent"),
+                image: convertImageToData(image: UIImage(named: "Parent")),
                 firstName: "Olivia",
                 lastName: "",
                 phoneNumber: 1234567890,
@@ -70,7 +68,7 @@ class FamilyManager {
                 kids: [
                     KidDetail(
                     id: 1,
-                    photo: UIImage(named: "kid1"),
+                    photo: convertImageToData(image: UIImage(named: "kid1")),
                     firstName: "Emma",
                     lastName: "",
                     dob: Calendar.current.date(byAdding: .year, value: -6, to: Date())!,
@@ -106,7 +104,7 @@ class FamilyManager {
                     
                 KidDetail(
                     id: 2,
-                    photo: UIImage(named: "john"),
+                    photo: convertImageToData(image: UIImage(named: "john")),
                     firstName: "Liam",
                     lastName: "",
                     dob: Calendar.current.date(byAdding: .year, value: -3, to: Date())!,
@@ -138,12 +136,43 @@ class FamilyManager {
     
     //initialise the singleton instance
     static let shared = FamilyManager()
+    private let parentDetailKey = "parentDetail"
     
-    private init() {}
+    private init() {
+        loadData()
+    }
     
+    func loadData() {
+        if let parentData = UserDefaults.standard.data(forKey: parentDetailKey) {
+            do {
+                let decoder = JSONDecoder()
+                let decodedParentDetail = try decoder.decode(ParentDetail.self, from: parentData)
+                parentDetail = decodedParentDetail
+                print("Data loaded successfully.")
+            } catch {
+                print("Failed to load data: \(error)")
+            }
+        } else {
+            print("No data found in UserDefaults.")
+        }
+    }
+    
+    func saveData() {
+        do {
+            let encoder = JSONEncoder()
+            let parentData = try encoder.encode(parentDetail)
+            
+            UserDefaults.standard.set(parentData, forKey: parentDetailKey)
+            print("Data saved successfully.")
+        } catch {
+            print("Failed to save data: \(error)")
+        }
+    }
     
     func updateParentDetails(details: ParentDetail) {
         parentDetail = details
+        
+        saveData()
     }
     
     // Get the details of the parent.
@@ -177,6 +206,8 @@ class FamilyManager {
         // Add the new child to the list
         parentDetail.kids.append(newChild)
         print("Child \(newChild.firstName) \(newChild.lastName ?? "") added with ID \(newID).")
+        
+        saveData()
     }
     
     // Remove a child from the parent's kids list by ID.
@@ -184,6 +215,8 @@ class FamilyManager {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
             parentDetail.kids.remove(at: index)
             print("Child with ID \(id) removed successfully.")
+            
+            saveData()
         } else {
             print("No child found with ID \(id).")
         }
@@ -197,6 +230,8 @@ class FamilyManager {
             childToUpdate.id = id
             parentDetail.kids[index] = childToUpdate
             print("Child with ID \(id) updated successfully.")
+            
+            saveData()
         } else {
             print("No child found with ID \(id).")
         }
@@ -235,6 +270,8 @@ class FamilyManager {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
             parentDetail.kids[index].alTrack.append(allergy)
             print("Allergy added to child with ID \(id).")
+            
+            saveData()
         } else {
             print("No child found with ID \(id).")
         }
@@ -246,6 +283,8 @@ class FamilyManager {
             if let allergyIndex = parentDetail.kids[kidIndex].alTrack.firstIndex(where: { $0.rawValue == allergy.rawValue }) {
                 parentDetail.kids[kidIndex].alTrack.remove(at: allergyIndex)
                 print("Allergy '\(allergy)' removed from child with ID \(id).")
+                
+                saveData()
             } else {
                 print("No allergy named '\(allergy)' found for child with ID \(id).")
             }
@@ -259,6 +298,8 @@ class FamilyManager {
         if let index = parentDetail.kids.firstIndex(where: { $0.id == id }) {
 //            parentDetail.kids[index].histroy.append(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()))
             parentDetail.kids[index].history.insert(HistoryRecord(condition: condition, selectedRemedy: remedy, date: Date()), at: 0)
+            
+            saveData()
         }
     }
     
@@ -271,6 +312,8 @@ class FamilyManager {
             }) {
                 // Remove the last matching record
                 parentDetail.kids[index].history.remove(at: recordIndex)
+                
+                saveData()
             }
         }
     }
@@ -282,6 +325,8 @@ class FamilyManager {
                 $0.condition == condition && $0.selectedRemedy.title == remedy.title
             }) {
                 parentDetail.kids[index].history[recordIndex].rating.toggle()
+                
+                saveData()
             }
         }
     }
@@ -289,7 +334,7 @@ class FamilyManager {
 
 // MARK: - Remedy suggestion data model
 
-struct Remedy {
+struct Remedy: Codable {
     let title: String
     let shortDescription: String
     let steps: [String]
@@ -990,7 +1035,7 @@ enum InsightCatogory{
     case naturalRemedies
 }
 
-enum AllergyCategory: String {
+enum AllergyCategory: String, Codable {
     case aloeVera = "Aloe Vera"
 
     case bakingSoda = "Baking Soda"

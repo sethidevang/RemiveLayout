@@ -29,7 +29,7 @@ class UserProfileTableViewController: UITableViewController {
         image.layer.cornerRadius = image.frame.size.width / 2
         firstName.text = userParent.firstName
         lastName.text = userParent.lastName
-        image.image = userParent.image
+        image.image = convertDataToImage(data: userParent.image)
         phoneNumber.text = "\(userParent.phoneNumber)"
         mail.text = userParent.email
         address.text = userParent.address

@@ -45,7 +45,7 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
     
     func ParentDetail(){
         userName.text = "\(userDetail.firstName)" + " " + "\(userDetail.lastName ?? "Dummy")"
-        userImage.image = userDetail.image
+        userImage.image = convertDataToImage(data: userDetail.image)
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
     }
     
@@ -68,7 +68,7 @@ class ProfileTableViewController: UITableViewController, UICollectionViewDataSou
         
             if let cellData = FamilyManager.shared.getChildDetails(byIndex: indexPath.item) {
                 cell.photo.layer.cornerRadius = cell.photo.frame.size.width / 2
-                cell.photo.image = cellData.photo
+                cell.photo.image = convertDataToImage(data: cellData.photo)
                 cell.photo.clipsToBounds = true
                 cell.photo.contentMode = .scaleAspectFill
                 let firstName = cellData.firstName

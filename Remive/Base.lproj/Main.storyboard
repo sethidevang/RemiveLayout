@@ -122,13 +122,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ew3-b4-gOH">
                                             <rect key="frame" x="15.000000000000004" y="28.333333333333332" width="61.333333333333343" height="44.666666666666671"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3D-aT-4kI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="LABEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3D-aT-4kI">
                                                     <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdb-Wp-Y7j">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdb-Wp-Y7j">
                                                     <rect key="frame" x="0.0" y="29.000000000000004" width="33" height="15.666666666666668"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -3388,10 +3388,10 @@
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wM-dP-dAV">
-                                                            <rect key="frame" x="125.33333333333331" y="206.66666666666666" width="102.66666666666669" height="34.333333333333343"/>
+                                                            <rect key="frame" x="124.66666666666669" y="206.66666666666666" width="104" height="34.333333333333343"/>
                                                             <color key="tintColor" red="1" green="0.039215686270000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="tinted" title="Edit Photo"/>
+                                                            <buttonConfiguration key="configuration" style="tinted" title="Add Photo"/>
                                                             <connections>
                                                                 <action selector="editButtonTapped:" destination="dKV-Mx-uTF" eventType="touchUpInside" id="HDW-PV-mkm"/>
                                                             </connections>

@@ -139,7 +139,7 @@ class HomeCollectionViewController: UICollectionViewController {
                     cell.kidPhoto.layer.cornerRadius = cell.kidPhoto.frame.size.width / 2
                     cell.clipsToBounds = true
                     cell.kidPhoto.contentMode = .scaleAspectFill
-                    cell.kidPhoto.image = cellData.photo
+                    cell.kidPhoto.image = convertDataToImage(data: cellData.photo)
                     let firstName = cellData.firstName
                     let lastName = cellData.lastName ?? ""
                     cell.labelOutlet.text = "\(firstName) \(lastName)"

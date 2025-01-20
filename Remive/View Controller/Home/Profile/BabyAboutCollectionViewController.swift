@@ -67,7 +67,7 @@ class BabyAboutCollectionViewController: UICollectionViewController {
             let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)
             cell.kidPhoto.layer.cornerRadius = cell.kidPhoto.frame.size.width / 2
             cell.clipsToBounds = true
-            cell.kidPhoto.image = cellData?.photo
+            cell.kidPhoto.image = convertDataToImage(data: cellData?.photo)
             cell.labelOutlet.text = "\(cellData?.firstName ?? "") \(cellData?.lastName ?? "")"
             
             return cell

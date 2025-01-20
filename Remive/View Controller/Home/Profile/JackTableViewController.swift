@@ -36,7 +36,7 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         let cellData = FamilyManager.shared.getChildDetails(byID: selectedChildID)
         dobDatePicker.date = cellData?.dob ?? .now
         imageOutlet.layer.cornerRadius = imageOutlet.frame.size.width / 2
-        imageOutlet.image = cellData?.photo
+        imageOutlet.image = convertDataToImage(data: cellData?.photo)
         firstName.text = cellData?.firstName
         lastName.text = cellData?.lastName
         weight.text = "\(cellData?.weight ?? 1)"
@@ -93,11 +93,11 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         var newChildDetail = FamilyManager.shared.getChildDetails(byID: selectedChildID)
         
         newChildDetail?.firstName = firstName.text!
-        newChildDetail?.lastName=lastName.text
-        newChildDetail?.dob=dobDatePicker.date
-        newChildDetail?.weight=Double(weight.text ?? "")
-        newChildDetail?.height=Double(height.text ?? "")
-        newChildDetail?.photo=imageOutlet.image
+        newChildDetail?.lastName = lastName.text
+        newChildDetail?.dob = dobDatePicker.date
+        newChildDetail?.weight = Double(weight.text ?? "")
+        newChildDetail?.height = Double(height.text ?? "")
+        newChildDetail?.photo = convertImageToData(image: imageOutlet.image)
         
         FamilyManager.shared.updateChildDetails(byID: selectedChildID, with: newChildDetail!)
         
