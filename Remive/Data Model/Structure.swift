@@ -1062,20 +1062,19 @@ enum AllergyCategory: String, Codable {
     case calendula = "Calendula"
 }
 
-struct Insights {
+struct Insights: Codable {
     var id: Int
-    var image : UIImage?
-    var headingOne : String
-    var headingTwo : String
-    var subheadingOne : String
-    var dataOne : String
-    var subheadingTwo : String?
-    var dataTwo : String?
-    var savedDateTime : Date? = nil
+    var image: String?
+    var headingOne: String
+    var headingTwo: String
+    var subheadingOne: String
+    var dataOne: String
+    var subheadingTwo: String
+    var dataTwo: String
     var allergyCategory: [AllergyCategory]
     var link: String
+    var savedDateTime: Date?
 }
-
 
 class InsightData {
     
@@ -1313,7 +1312,31 @@ class InsightData {
     
     private var saved: [Insights] = []
     
+    private static let savedInsightsKey = "savedInsightsKey"
+    
     private init() {
+        loadSavedInsightsFromLocal()
+    }
+    
+    func loadSavedInsightsFromLocal() {
+        if let data = UserDefaults.standard.data(forKey: InsightData.savedInsightsKey) {
+            let decoder = JSONDecoder()
+            do {
+                saved = try decoder.decode([Insights].self, from: data)
+            } catch {
+                print("Failed to decode savedInsights: \(error)")
+            }
+        }
+    }
+    
+    func saveSavedInsightsToLocal() {
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(saved)
+            UserDefaults.standard.set(data, forKey: InsightData.savedInsightsKey)
+        } catch {
+            print("Failed to encode savedInsights: \(error)")
+        }
     }
     
     func getInsight(section: Int, item: Int) -> Insights {
@@ -1414,6 +1437,8 @@ class InsightData {
         } else {
             print("Insight with ID \(id) not found.")
         }
+        
+        saveSavedInsightsToLocal()
     }
     
     // Remove an insight from saved list
@@ -1423,11 +1448,15 @@ class InsightData {
         } else {
             print("Insight with ID \(id) not found.")
         }
+        
+        saveSavedInsightsToLocal()
     }
     
     // Remove all insights from saved list
     func removeAllInsights() {
         saved.removeAll()
+        
+        saveSavedInsightsToLocal()
     }
     
     // Get size of saved insights
