@@ -71,7 +71,6 @@ class DetailTableViewController: UITableViewController {
         cell.backgroundColor = UIColor.clear
         
 
-        // Disable the default selection highlight effect by setting selectionStyle to .none
         cell.selectionStyle = .none
 
         return cell

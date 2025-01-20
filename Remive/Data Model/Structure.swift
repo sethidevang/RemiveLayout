@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Search data model
 
 
-//recent search - history
+
 
 
 // MARK: - Parent detail data model
@@ -36,7 +36,7 @@ struct KidDetail {
     var firstName: String
     var lastName: String?
     var dob: Date
-    var gender: String?
+    var gender: String
     var height: Double?
     var weight: Double?
     var alTrack: [AllergyCategory] = []
@@ -397,7 +397,7 @@ class RemedySuggestionsModel {
                     images: ["2.4.1","2.4.2","2.4.3"],
                     link: "https://www.cocooncenter.co.uk/journal/a-hot-water-bottle-to-relax-the-baby.html#:~:text=The%20water%20should%20not%20be,the%20baby%20goes%20to%20sleep."
                 ),
-//
+
                 Remedy(
                     title: "Fluids",
                     shortDescription: "Drinking plenty of water is one of the simplest and most effective remedies for congestion during a cold. Staying hydrated helps to loosen mucus, keep your nasal passages moist, and prevent dehydration, especially warm water",
@@ -992,18 +992,16 @@ enum InsightCatogory{
 
 enum AllergyCategory: String {
     case aloeVera = "Aloe Vera"
-//    case pacifiers = "Pacifiers"
+
     case bakingSoda = "Baking Soda"
     case cardamom = "Cardamom"
-//    case chewingGum = "Chewing gum"
+
     case coconut = "Coconut"
     case cornstarch = "Cornstarch"
     case cumin = "Cumin"
-//    case fruitJuice = "Fruit juice"
+
     case garlic = "Garlic"
-//    case gripeWater = "Gripe water"
-//    case harshSoaps = "Harsh Soaps"
-//    case highFiberFoods = "High-Fiber Foods"
+
     case honey = "Honey"
     case lemon = "Lemon"
     case oatmeal = "Oatmeal"
@@ -1030,7 +1028,7 @@ struct Insights {
     var link: String
 }
 
-//dont make everything nil
+
 class InsightData {
     
     static var shared = InsightData()

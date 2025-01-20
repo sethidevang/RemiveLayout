@@ -28,7 +28,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PediatricianS
         let region = MKCoordinateRegion(center: pediatrician.location, span: span)
         mapView.setRegion(region, animated: true)
         
-        // Optionally, select the corresponding annotation
+       
         for annotation in mapView.annotations {
             if annotation.coordinate.latitude == pediatrician.location.latitude &&
                 annotation.coordinate.longitude == pediatrician.location.longitude {
@@ -84,9 +84,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PediatricianS
         }
     }
     
-    // Present the pediatricians list in a half sheet
+   
     func presentPediatriciansHalfSheet() {
-        // Instantiate the PediatriciansListTableViewController from storyboard
+      
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let pediatriciansVC = storyboard.instantiateViewController(withIdentifier: "PediatriciansListTableViewController") as? PediatriciansListTableViewController {
             
@@ -135,9 +135,27 @@ extension ViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            // Create a coordinate region based on the current location
             let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
+
+            // Create a placemark from the current location
+            let placemark = MKPlacemark(coordinate: location.coordinate)
+            
+            // Call dropPinZoomIn to update the map and search results
+            dropPinZoomIn(placemark: placemark)
+            
+            // Set the search bar text to the current location address (if available)
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+                if let placemarks = placemarks, let firstPlacemark = placemarks.first {
+                    let address = firstPlacemark.name ?? "Unknown Location"
+                    DispatchQueue.main.async {
+                        self?.resultSearchController?.searchBar.text = address
+                    }
+                }
+            }
         }
     }
     

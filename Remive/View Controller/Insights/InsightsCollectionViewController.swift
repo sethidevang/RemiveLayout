@@ -181,6 +181,7 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
                 collectionView.reloadData()
             }
         }
+        collectionView.reloadData()
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
