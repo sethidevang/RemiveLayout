@@ -81,7 +81,7 @@ class InsightsCollectionViewController: UICollectionViewController, SavedInsight
         
         cell.heading1.text = data.headingOne
         cell.heading2.text = data.headingTwo
-        cell.image.image = UIImage(systemName: data.image ?? "BabyCare1")
+        cell.image.image = UIImage(named: data.image ?? "BabyCare1")
         cell.image.layer.masksToBounds = true
         cell.image.contentMode = .scaleAspectFill
         cell.layer.cornerRadius = 20

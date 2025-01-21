@@ -1084,7 +1084,7 @@ class InsightData {
         .babyCare: [
             ["Keeping the Baby Warm" : Insights(
                 id:1,
-                image : UIImage(named: "BabyCare1"),
+                image : "BabyCare1",
                 headingOne: "Keeping the Baby Warm",
                 headingTwo: "Ensuring Baby's Comfort",
                 subheadingOne: "Proper Layering for Comfort",
@@ -1097,7 +1097,7 @@ class InsightData {
             ],
             ["Ensuring Safe Sleep for Babies and Young Children" : Insights(
                 id:2,
-                image : UIImage(named: "BabyCare2"),
+                image :"BabyCare2",
                 headingOne: "Safe Sleep for Children",
                 headingTwo: "Importance of Safe Sleep",
                 subheadingOne: "Sleep Position and Safety",
@@ -1110,7 +1110,7 @@ class InsightData {
             ],
             ["Hygiene and Safety Measures" : Insights(
                 id:3,
-                image : UIImage(named: "BabyCare3"),
+                image : "BabyCare3",
                 headingOne: "Hygiene and Safety Measures",
                 headingTwo: "Cleanliness prevents infection",
                 subheadingOne: "Handwashing and Clean Environment",
@@ -1123,7 +1123,7 @@ class InsightData {
             ],
             ["Engaging and Bonding with Your Baby" : Insights(
                 id:4,
-                image : UIImage(named: "BabyCare4"),
+                image :"BabyCare4",
                 headingOne: "Bonding with Your Baby",
                 headingTwo: "Bond through interaction",
                 subheadingOne: "Communication and Attention",
@@ -1136,7 +1136,7 @@ class InsightData {
             ],
             ["Proper Care and Handling of Your Baby" : Insights(
                 id:5,
-                image : UIImage(named: "BabyCare5"),
+                image :"BabyCare5",
                 headingOne: "Hold baby gently",
                 headingTwo: "Gentle Handling and Safety",
                 subheadingOne: "Support and Care During Handling",
@@ -1149,7 +1149,7 @@ class InsightData {
             ],
             ["Diapering and Bathing Care" : Insights(
                 id:6,
-                image : UIImage(named: "BabyCare6"),
+                image :"BabyCare6",
                 headingOne: "Clean with care",
                 headingTwo: "Clean, wipe, apply cream",
                 subheadingOne: "Hygiene and Comfort",
@@ -1162,7 +1162,7 @@ class InsightData {
             ],
             ["Feeding and Sleep Patterns" : Insights(
                 id:7,
-                image : UIImage(named: "BabyCare7"),
+                image :"BabyCare7",
                 headingOne: "Establish a routine",
                 headingTwo: "Feeding Your Newborn",
                 subheadingOne: "Frequent Feeding and Monitoring",
@@ -1177,7 +1177,7 @@ class InsightData {
         .babyDiet: [
             ["Feeding Your Baby: Essential Nutrition for Growth" : Insights(
                 id:8,
-                image : UIImage(named: "BabyDiet1"),
+                image : "BabyDiet1",
                 headingOne: "Ensure balanced nutrition",
                 headingTwo: "Nourish, Grow, Thrive",
                 subheadingOne: "6-8 Months: Introducing Solid Foods",
@@ -1190,7 +1190,7 @@ class InsightData {
             ],
             ["Baby's First Foods: A Guide for 4-6 Months" : Insights(
                 id:9,
-                image : UIImage(named: "BabyDiet2"),
+                image : "BabyDiet2",
                 headingOne: "Feed gradually",
                 headingTwo: "Start with rice cereal",
                 subheadingOne: "Why Iron is Essential",
@@ -1203,7 +1203,7 @@ class InsightData {
             ],
             ["Fruits and Vegetables for 6-8 Month-Olds" : Insights(
                 id:10,
-                image : UIImage(named: "BabyDiet3"),
+                image :"BabyDiet3",
                 headingOne: "Introduce soft purees",
                 headingTwo: "Use fresh fruits/veggies",
                 subheadingOne: "Nutrient-Rich Purees",
@@ -1216,7 +1216,7 @@ class InsightData {
             ],
             ["8-10 Months: Exploring Mashed Foods and Finger Foods" : Insights(
                 id:11,
-                image : UIImage(named: "BabyDiet4"),
+                image :"BabyDiet4",
                 headingOne: "Introduce mashed textures",
                 headingTwo: "Encourage self-feeding.",
                 subheadingOne: "Introducing Mashed Foods",
@@ -1229,7 +1229,7 @@ class InsightData {
             ],
             ["10-12 Months: Transitioning to Family Meals" : Insights(
                 id:12,
-                image : UIImage(named: "BabyDiet5"),
+                image :"BabyDiet5",
                 headingOne: "Serve small, soft portions",
                 headingTwo: "Preparing Balanced Meals",
                 subheadingOne: "Introducing Family Foods",
@@ -1242,7 +1242,7 @@ class InsightData {
             ],
             ["Hydration and Baby’s First Drinks" : Insights(
                 id:13,
-                image : UIImage(named: "BabyDiet6"),
+                image :"BabyDiet6",
                 headingOne: "Monitor hydration levels",
                 headingTwo: "Milk and water are key",
                 subheadingOne: "Introducing Water",
@@ -1257,7 +1257,7 @@ class InsightData {
         .naturalRemedies: [
             ["Chamomile Tea for Babies: Soothing Benefits" : Insights(
                 id:14,
-                image : UIImage(named: "NaturalRemedy1"),
+                image :"NaturalRemedy1",
                 headingOne: "Chamomile tea can soothe",
                 headingTwo: "Calms and Sooths",
                 subheadingOne: "Promoting Relaxation and Sleep",
@@ -1270,7 +1270,7 @@ class InsightData {
             ],
             ["Ginger for Baby’s Digestive Health" : Insights(
                 id:15,
-                image : UIImage(named: "NaturalRemedy2"),
+                image :"NaturalRemedy2",
                 headingOne: "Ginger aids digestion",
                 headingTwo: "Helps sooths tummy",
                 subheadingOne: "Gentle Relief for Digestive Discomfort",
@@ -1283,7 +1283,7 @@ class InsightData {
             ],
             ["Lavender Oil for Baby’s Skin and Sleep" : Insights(
                 id:16,
-                image : UIImage(named: "NaturalRemedy3"),
+                image :"NaturalRemedy3",
                 headingOne: "Lavender oil soothes skin",
                 headingTwo: "Lavender calms and relaxes",
                 subheadingOne: "Lavender’s Calming Effect",
@@ -1296,7 +1296,7 @@ class InsightData {
             ],
             ["Calendula for Baby’s Skin Care" : Insights(
                 id:17,
-                image : UIImage(named: "NaturalRemedy4"),
+                image :"NaturalRemedy4",
                 headingOne: "Calendula soothes skin",
                 headingTwo: "Ideal for sensitive skin",
                 subheadingOne: "Treating Diaper Rash and Irritations",

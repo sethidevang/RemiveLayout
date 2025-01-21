@@ -214,7 +214,7 @@ class HomeCollectionViewController: UICollectionViewController {
             let cellData = InsightData.shared.getTwoRandomInsights()[0]
             cell.image.layer.cornerRadius = 14
             cell.image.contentMode = .scaleAspectFill
-            cell.image.image = cellData.image
+            cell.image.image = UIImage(named: cellData.image ?? "BabyCare1")
             cell.label1.text = cellData.headingOne
             cell.label2.text = cellData.headingTwo
             cell.layer.cornerRadius = 14

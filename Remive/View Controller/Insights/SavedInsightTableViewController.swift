@@ -61,7 +61,7 @@ class SavedInsightTableViewController: UITableViewController {
         } else {
             cell.dayTimeLabel.text = "Date not added"
         }
-        cell.imageOutlet.image = savedInsights[indexPath.section].image ?? UIImage(named: "defaultInsightImage")
+        cell.imageOutlet.image = UIImage(named: savedInsights[indexPath.section].image ?? "BabyCare1") ?? UIImage(named: "defaultInsightImage")
         cell.imageOutlet.layer.cornerRadius = 10
         cell.imageOutlet.contentMode = .scaleAspectFill
         cell.layer.cornerRadius = 20

@@ -55,7 +55,7 @@ class DetailTableViewController: UITableViewController {
 
         if let dat = data {
             heading2.text = dat.headingTwo
-            image.image = dat.image
+            image.image = UIImage(named: dat.image ?? "BabyCare1")
             image.contentMode = .scaleAspectFill
             paragraph1.text = dat.dataOne
             paragraph2.text = dat.dataTwo
