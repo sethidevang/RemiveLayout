@@ -282,6 +282,13 @@ class HomeCollectionViewController: UICollectionViewController {
         return heading
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeToHistory"{
+            let destinationVC = segue.destination as? History
+            destinationVC?.data = selectedHistoryRecord
+        }
+    }
+    
     @IBSegueAction func presentInsight(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
         if let cell = sender as? InsightCollectionViewCell {
             var isSaved: Bool = false
@@ -302,6 +309,13 @@ class HomeCollectionViewController: UICollectionViewController {
 
     
     @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
+        selectedChildIndex = 0
+        selectedChildIndexPath = IndexPath()
+        selectedChildId = 1
+        if selectedChildIndex >= FamilyManager.shared.getChildCount() {
+            selectedChildId = 0
+            selectedChildIndex = -1
+        }
         collectionView.reloadData()
     }
     
@@ -321,44 +335,5 @@ class HomeCollectionViewController: UICollectionViewController {
             sender.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "homeToHistory"{
-            let destinationVC = segue.destination as? History
-            destinationVC?.data = selectedHistoryRecord
-        }
-    }
-    
-    // MARK: UICollectionViewDelegate
-
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
