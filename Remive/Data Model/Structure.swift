@@ -933,7 +933,6 @@ class RemedySuggestionsModel {
                     images: ["9.10.1","9.10.2","9.10.3"],
                     link: "https://www.krishnaherbals.com/nausea-vomiting.html"
                 ),
-
             ]
         ]
     )
