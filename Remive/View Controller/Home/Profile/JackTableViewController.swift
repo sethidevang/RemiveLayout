@@ -122,4 +122,20 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func genderButtonAction(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Choose Gender", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let male = UIAlertAction(title: "Male", style: .default) { _ in
+            sender.setTitle("Male", for: .normal)
+            }
+            
+        let female = UIAlertAction(title: "Female", style: .default) { _ in
+            sender.setTitle("Female", for: .normal)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(male)
+        alertController.addAction(female)
+        present(alertController, animated: true, completion: nil)
+    }
 }

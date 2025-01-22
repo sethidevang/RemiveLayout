@@ -103,7 +103,7 @@ class AddBabyTableViewController: UITableViewController, UIImagePickerController
     }
     
     @IBAction func genderSelectAction(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Choose Gender", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let male = UIAlertAction(title: "Male", style: .default) { _ in
             sender.setTitle("Male", for: .normal)

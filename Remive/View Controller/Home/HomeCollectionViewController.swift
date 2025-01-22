@@ -166,8 +166,10 @@ class HomeCollectionViewController: UICollectionViewController {
             cell.firstAid.text = "Cure Ask"
             cell.symbol.image = UIImage(systemName: "cross.case")!
             cell.nextSymbol.image = UIImage(systemName: "chevron.right")!
+//            cell.backgroundColor = UIColor(cgColor: CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 0.5))
 
             cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
 //            cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
             if traitCollection.userInterfaceStyle == .dark {
                 cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
