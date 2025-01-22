@@ -104,5 +104,22 @@ class JackTableViewController: UITableViewController , UIImagePickerControllerDe
         performSegue(withIdentifier: "unwindToUpdatedBabyAbout", sender: self)
     }
     
+    @IBAction func deleteChildProfileButtonTapped(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Delete Child Profile",
+                                                message: "Are you sure you want to delete this profile? This action cannot be undone.",
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            FamilyManager.shared.removeChild(byID: self.selectedChildID)
+            self.performSegue(withIdentifier: "unwindToParentProfile", sender: self)
+        }
+        alertController.addAction(deleteAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
 }
