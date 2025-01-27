@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import MapKit
 // MARK: - Parent detail data model
 
 //user account details
@@ -19,6 +19,13 @@ struct ParentDetail: Codable {
     var email: String
     var address: String?
     var kids: [KidDetail]
+}
+
+//doctor connect
+struct Pediatrician {
+    var name: String
+    var location: CLLocationCoordinate2D
+    var specialty: String = "Pediatrician"
 }
 
 //kid profile
@@ -37,10 +44,13 @@ struct KidDetail: Codable {
         let calendar = Calendar.current
         let today = Date()
         let components = calendar.dateComponents([.year, .month], from: dob, to: today)
-        
         let yearsInMonths = (components.year ?? 0) * 12
         return yearsInMonths + (components.month ?? 0)
     }
+}
+//allergy
+struct Allergy {
+    var title: String
 }
 //history record
 struct HistoryRecord: Codable {
@@ -136,6 +146,7 @@ class FamilyManager {
     
     //initialise the singleton instance
     static let shared = FamilyManager()
+    
     private let parentDetailKey = "parentDetail"
     
     private init() {
@@ -171,7 +182,6 @@ class FamilyManager {
     
     func updateParentDetails(details: ParentDetail) {
         parentDetail = details
-        
         saveData()
     }
     
@@ -347,7 +357,8 @@ struct Solution {
     let conditions: [String: [Remedy]]
 }
 
-//class for remedy
+
+// MARK: - RemedySuggestionsModel
 class RemedySuggestionsModel {
     private init() {}
     
@@ -958,32 +969,15 @@ class RemedySuggestionsModel {
     func getAllergies() -> [AllergyCategory] {
         return allergies
     }
+    
     //to get all the symptoms
     func getSymptomTitles() -> [String] {
         return Array(cureTips.conditions.keys)
     }
+    
+    
 //    to append all the remedies to the array
     func selectSymptom(_ symptom: String, selectedChildId: Int) -> [String] {
-//        guard let remedies = cureTips.conditions[symptom] else { return suggestedIngredients }
-//
-//        var newSuggestedIngredients: [String] = []
-//
-//        if allergies.isEmpty {
-//            suggestedRemedies.append(contentsOf: remedies)
-//        } else {
-//            for remedy in remedies {
-//                if suggestedIngredients.contains(remedy.title) {
-//                    suggestedRemedies.append(remedy)
-//                } else if !allergies.contains(where: { $0.allergyName == remedy.title }) {
-//                    suggestedRemedies.append(remedy)
-//                    suggestedIngredients.append(remedy.title)
-//                    newSuggestedIngredients.append(remedy.title)
-//                }
-//            }
-//        }
-//
-//        return newSuggestedIngredients
-        
         var ans: [String] = []
         let altrack = FamilyManager.shared.getAllergies(ofChildID: selectedChildId)
         
@@ -997,6 +991,7 @@ class RemedySuggestionsModel {
         }
         return ans
     }
+    
     //to deselect and change the symptom
     func removeSymptom(_ symptom: String) {
         suggestedRemedies.removeAll(where: { $0.title == symptom })
@@ -1075,6 +1070,8 @@ struct Insights: Codable {
     var savedDateTime: Date?
 }
 
+
+// MARK: - Insight Data
 class InsightData {
     
     static var shared = InsightData()
@@ -1384,7 +1381,7 @@ class InsightData {
         }
         
     }
-    //random cat for recommanded for time being
+    //random insights for home
     func getTwoRandomInsights() -> [Insights] {
         let randomCategoryIndex = Int.random(in: 0..<ckOne.count)
         var selectedCategory: [[String: Insights]] = []

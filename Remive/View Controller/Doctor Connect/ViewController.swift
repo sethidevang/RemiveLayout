@@ -8,11 +8,6 @@
 import UIKit
 import MapKit
 
-struct Pediatrician {
-    var name: String
-    var location: CLLocationCoordinate2D
-    var specialty: String = "Pediatrician"
-}
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark)

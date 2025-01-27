@@ -60,24 +60,16 @@ class CureAskTableViewController: UITableViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
-            // Symptom Cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cure", for: indexPath) as! SymptomCollectionViewCell
-            //                let symptom = symptoms[indexPath.row]
             let symptom = RemedySuggestionsModel.shared.getSymptomTitles()[indexPath.row]
-            //            cell.symptomButton.text = symptom
             if traitCollection.userInterfaceStyle == .dark {
                 cell.symptomButton.tintColor = .white // White border for Dark Mode
             }
             cell.symptomButton.setTitle(symptom, for: .normal)
-            
-            // Set the border for the button and the corner radius
             cell.symptomButton.layer.borderWidth = 2.0
             cell.symptomButton.layer.cornerRadius = 10
             cell.symptomButton.layer.masksToBounds = true
             cell.symptomButton.layer.borderColor = CGColor(red: 0.961, green: 0.039, blue: 0.329, alpha: 1.0)
-            
-
-            
             return cell
         } else if collectionView == self.collectionViewRemedyCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "remedyShow", for: indexPath) as! RemedyShowCollectionViewCell

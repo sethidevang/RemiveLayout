@@ -3,7 +3,6 @@
 //  Remive
 //
 //  Created by Devang IOS on 09/12/24.
-//
 
 import UIKit
 
@@ -15,6 +14,7 @@ class HomeCollectionViewController: UICollectionViewController {
     var selectedChildIndex = 0
     var selectedChildIndexPath: IndexPath = IndexPath()
     var selectedChildId: Int = 1
+    var selectedHistoryRecord: HistoryRecord?
     
     func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
@@ -23,14 +23,6 @@ class HomeCollectionViewController: UICollectionViewController {
             
             switch sectionIndex {
             case 0:
-//                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(120))
-//                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-//                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.43), heightDimension: .absolute(120))
-//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//                section = NSCollectionLayoutSection(group: group)
-//                section.orthogonalScrollingBehavior = .groupPaging
-                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(120))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 37, bottom: 0, trailing: 37)
@@ -80,21 +72,10 @@ class HomeCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
-        
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headingReuseIdentifier)
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 4
@@ -166,11 +147,7 @@ class HomeCollectionViewController: UICollectionViewController {
             cell.firstAid.text = "Cure Ask"
             cell.symbol.image = UIImage(systemName: "cross.case")!
             cell.nextSymbol.image = UIImage(systemName: "chevron.right")!
-//            cell.backgroundColor = UIColor(cgColor: CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 0.5))
-
             cell.layer.borderWidth = 1.0
-//            cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
-//            cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
             if traitCollection.userInterfaceStyle == .dark {
                 cell.layer.borderColor = CGColor(red: 0.941, green: 0.039, blue: 0.329, alpha: 1.0)
                 
@@ -185,14 +162,12 @@ class HomeCollectionViewController: UICollectionViewController {
             cell.name.text = cellData?.condition
             cell.remedy.text = ("Remedy Suggested : \(cellData?.selectedRemedy.title ?? "")")
             if let date = cellData?.date {
-                // Calculate the difference in days from the current date
                 let calendar = Calendar.current
                 let currentDate = Date()
                 
                 let components = calendar.dateComponents([.day], from: date, to: currentDate)
                 
                 if let daysAgo = components.day, daysAgo >= 0 {
-                    // Set the formatted text: "x days ago"
                     if daysAgo == 0 {
                         cell.time.text = "Today"
                     } else if daysAgo == 1 {
@@ -206,7 +181,7 @@ class HomeCollectionViewController: UICollectionViewController {
             }
             cell.layer.borderWidth = 1
             if traitCollection.userInterfaceStyle == .dark {
-                cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)  // White border for Dark Mode
+                cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)
             }
             cell.layer.cornerRadius = 14
             return cell
@@ -223,7 +198,7 @@ class HomeCollectionViewController: UICollectionViewController {
             cell.layer.borderWidth = 1
             cell.insight = cellData
             if traitCollection.userInterfaceStyle == .dark {
-                cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)  // White border for Dark Mode
+                cell.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)
             }
             return cell
        
@@ -232,8 +207,7 @@ class HomeCollectionViewController: UICollectionViewController {
         }
     }
     
-    var selectedHistoryRecord: HistoryRecord?
-    
+   
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.item < FamilyManager.shared.getChildCount() {
             if let cell = collectionView.cellForItem(at: selectedChildIndexPath) as? BabyCardCollectionViewCell {
@@ -258,7 +232,6 @@ class HomeCollectionViewController: UICollectionViewController {
                 performSegue(withIdentifier: "homeToHistory", sender: self)
             }
         }
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -325,17 +298,10 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func thumbsUp(_ sender: UIButton) {
-//        let indexPath = IndexPath(item: <#T##Int#>, section: <#T##Int#>)
-//        if let data = FamilyManager.shared.getChildDetails(byID: selectedChildId)?.history
-//        if let record = FamilyManager.shared.getChildDetails(byID: selectedChildId)?.history[indexPath.item] {
-//            selectedHistoryRecord = record
-//            performSegue(withIdentifier: "homeToHistory", sender: self)
-        
         if sender.currentImage == UIImage(systemName: "hand.thumbsup.fill") {
             sender.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
         } else {
             sender.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         }
     }
-
 }
